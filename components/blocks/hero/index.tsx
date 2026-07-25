@@ -25,36 +25,28 @@ export interface HeroItem {
 
 const defaultItems: HeroItem[] = [
   {
-    background: "/images/banner1-new.jpg",
-    title: "Fastners",
+    background: "/images/corelink-fiber-hero.jpg",
+    title: "Built for Every Critical Connection",
     description:
-      "Over 100k standards and custom-tailored solutions for your needs",
-    buttonText: "EXPLORE MORE",
-    buttonHref: "/products",
+      "Optical fiber, cable, and connectivity systems for the networks that keep the world moving.",
+    buttonText: "EXPLORE OUR PRODUCTS",
+    buttonHref: "/#products",
   },
   {
-    background: "/images/2-banner-terminals.png",
-    title: "Terminals",
+    background: "/images/corelink-fiber-closeup.jpg",
+    title: "Precision at the Core",
     description:
-      "The connection of electrical power, we are a top connection provider",
-    buttonText: "EXPLORE MORE",
-    buttonHref: "/products/terminals",
+      "Low-loss fiber families engineered around transmission, routing, density, and real installation conditions.",
+    buttonText: "VIEW FIBER SOLUTIONS",
+    buttonHref: "/#products",
   },
   {
-    background: "/images/3-banner-global-supply-chain.png",
-    title: "Global Supply Chain",
+    background: "/images/corelink-network-rack.jpg",
+    title: "One Physical Layer. Every Environment.",
     description:
-      "Seamless global logistics, VMI, Start Warehouse, powering your global supply chain",
-    buttonText: "EXPLORE MORE",
-    buttonHref: "/contact",
-  },
-  {
-    background: "/images/4-banner-design-and-optimize1.png",
-    title: "Design And Optimize",
-    description:
-      "Continuous innovation and optimization for your competitive edge",
-    buttonText: "EXPLORE MORE",
-    buttonHref: "/about",
+      "A coordinated portfolio for data centers, telecom, industrial systems, energy, and smart infrastructure.",
+    buttonText: "START A PROJECT",
+    buttonHref: "/#contact",
   },
 ];
 
@@ -102,7 +94,7 @@ function AnimatedContent({ index, item }: { index: number; item: HeroItem }) {
 
   return (
     <motion.div
-      className="relative z-10 w-full max-w-[600px] md:w-[600px] text-white flex flex-col gap-3 md:gap-4 px-4 md:px-0"
+      className="relative z-10 w-full max-w-[760px] text-white flex flex-col gap-3 md:gap-5 px-4 md:px-0"
       variants={staggerContainer}
       initial="hidden"
       animate={isSelected ? "show" : "hidden"}
@@ -110,7 +102,7 @@ function AnimatedContent({ index, item }: { index: number; item: HeroItem }) {
     >
       <motion.h1
         variants={staggerItem}
-        className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-[800] leading-tight whitespace-nowrap"
+        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-[800] leading-[0.98] tracking-[-0.055em] text-balance"
       >
         {item.title}
       </motion.h1>
@@ -125,18 +117,18 @@ function AnimatedContent({ index, item }: { index: number; item: HeroItem }) {
           <Button
             asChild
             style={{
-              background: "linear-gradient(0deg, #EA9320, #EA9320), #FFCA37",
+              background: "linear-gradient(135deg, #7765ff, #4f8dff)",
             }}
-            className="rounded-sm cursor-pointer text-xs sm:text-sm px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-6 font-bold mt-3 sm:mt-4 md:mt-20 w-full sm:w-auto dark:text-white"
+            className="rounded-sm cursor-pointer text-xs sm:text-sm px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-6 font-bold mt-3 sm:mt-4 md:mt-10 w-full sm:w-auto dark:text-white"
           >
             <a href={item.buttonHref}>{item.buttonText}</a>
           </Button>
         ) : (
           <Button
             style={{
-              background: "linear-gradient(0deg, #EA9320, #EA9320), #FFCA37",
+              background: "linear-gradient(135deg, #7765ff, #4f8dff)",
             }}
-            className="rounded-sm cursor-pointer text-xs sm:text-sm px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-6 font-bold mt-3 sm:mt-4 md:mt-20 w-full sm:w-auto dark:text-white"
+            className="rounded-sm cursor-pointer text-xs sm:text-sm px-4 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-6 font-bold mt-3 sm:mt-4 md:mt-10 w-full sm:w-auto dark:text-white"
           >
             {item.buttonText}
           </Button>
@@ -198,12 +190,12 @@ export function Hero({
         <CarouselPrevious
           icon={<ArrowLeft className="size-4 md:size-6" />}
           disabled={false}
-          className="size-15 md:size-16 bg-[#EA9320]/50 hover:bg-[#EA9320] opacity-20 hover:opacity-100 text-white hover:text-white rounded-full absolute top-1/2 left-2 md:left-15 -translate-y-1/2 cursor-pointer z-10 hidden md:flex border-none"
+          className="size-15 md:size-16 bg-[#7765ff]/50 hover:bg-[#7765ff] opacity-20 hover:opacity-100 text-white hover:text-white rounded-full absolute top-1/2 left-2 md:left-15 -translate-y-1/2 cursor-pointer z-10 hidden md:flex border-none"
         />
         <CarouselNext
           icon={<ArrowRight className="size-4 md:size-6" />}
           disabled={false}
-          className="size-15 md:size-16 bg-[#EA9320]/50 hover:bg-[#EA9320] opacity-20 hover:opacity-100 text-white hover:text-white rounded-full absolute top-1/2 right-2 md:right-15 -translate-y-1/2 cursor-pointer z-10 hidden md:flex border-none"
+          className="size-15 md:size-16 bg-[#7765ff]/50 hover:bg-[#7765ff] opacity-20 hover:opacity-100 text-white hover:text-white rounded-full absolute top-1/2 right-2 md:right-15 -translate-y-1/2 cursor-pointer z-10 hidden md:flex border-none"
         />
       </Carousel>
     </div>

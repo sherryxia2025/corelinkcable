@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { CoreLinkBrand } from "@/components/corelink-brand";
 
 interface MenuItem {
   title: string;
@@ -10,30 +10,29 @@ interface MenuItem {
 }
 
 interface FooterProps {
-  logo?: {
-    url: string;
-    src: string;
-    alt: string;
-  };
   copyright?: string;
   menuItems?: MenuItem[];
 }
 
 const defaultConfig = {
-  logo: {
-    src: "/images/logo.png",
-    alt: process.env.NEXT_PUBLIC_APP_NAME || "",
-    url: "/",
-  },
-  copyright: "Copyright © 2025 - All rights reserved.",
+  copyright: "© 2026 CoreLink Cable. All rights reserved.",
   menuItems: [
     {
-      title: "LINKS",
+      title: "EXPLORE",
       links: [
         { text: "Home", url: "/" },
-        { text: "Products", url: "/products" },
-        { text: "About", url: "/about" },
-        { text: "Contact", url: "/contact" },
+        { text: "Products", url: "/#products" },
+        { text: "About Us", url: "/#about" },
+        { text: "Contact", url: "/#contact" },
+      ],
+    },
+    {
+      title: "PRODUCT LINES",
+      links: [
+        { text: "Optical Fibers", url: "/#products" },
+        { text: "Fiber Optic Cables", url: "/#products" },
+        { text: "Cable Assemblies", url: "/#products" },
+        { text: "Connectivity", url: "/#products" },
       ],
     },
     {
@@ -43,18 +42,10 @@ const defaultConfig = {
         { text: "Privacy Policy", url: "/privacy-policy" },
       ],
     },
-    {
-      title: "Friends",
-      links: [
-        { text: "Deamoy", url: "https://deamoy.com" },
-        { text: "PressFast", url: "https://pressfa.st" },
-      ],
-    },
   ],
 };
 
 export const Footer = ({
-  logo = defaultConfig.logo,
   copyright = defaultConfig.copyright,
   menuItems = defaultConfig.menuItems,
 }: FooterProps) => {
@@ -65,35 +56,25 @@ export const Footer = ({
           <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
             <div className="col-span-2 mb-8 lg:mb-0">
               <div className="flex items-center gap-2 lg:justify-start">
-                <Link href={logo.url}>
-                  <Image
-                    src={logo.src}
-                    alt={logo.alt}
-                    width={100}
-                    height={100}
-                    priority
-                  />
+                <Link href="/" aria-label="CoreLink Cable home">
+                  <CoreLinkBrand inverted />
                 </Link>
               </div>
-              <p className="mt-4 font-bold">{copyright}</p>
-              <p className="mt-4 font-bold">
-                Build with{" "}
-                <a
-                  href="https://pressfa.st"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  PressFast
-                </a>
+              <p className="mt-5 max-w-sm leading-relaxed">
+                Optical fiber, cable, connectivity, and copper systems for
+                dependable network infrastructure.
               </p>
+              <p className="mt-5 font-bold">{copyright}</p>
             </div>
-            {menuItems.map((section, sectionIdx) => (
-              <div key={sectionIdx}>
+            {menuItems.map((section) => (
+              <div key={section.title}>
                 <h3 className="mb-4 font-bold text-white">{section.title}</h3>
                 <ul className="text-muted-foreground space-y-4">
-                  {section.links.map((link, linkIdx) => (
-                    <li key={linkIdx} className="hover:text-white font-medium">
+                  {section.links.map((link) => (
+                    <li
+                      key={`${link.text}-${link.url}`}
+                      className="hover:text-white font-medium"
+                    >
                       <a href={link.url}>{link.text}</a>
                     </li>
                   ))}

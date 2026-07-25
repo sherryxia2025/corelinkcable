@@ -5,19 +5,15 @@ export interface NavItem {
 
 export interface NavConfig {
   brandName: string;
-  logo: string;
-  darkLogo?: string;
   items: NavItem[];
 }
 
 export const defaultNavConfig: NavConfig = {
-  brandName: process.env.NEXT_PUBLIC_APP_NAME || "",
-  logo: "/images/logo.png",
-  darkLogo: "/images/dark-logo.png",
+  brandName: process.env.NEXT_PUBLIC_APP_NAME || "CoreLink Cable",
   items: [
     { label: "HOME", href: "/" },
-    { label: "PRODUCTS", href: "/products" },
-    { label: "ABOUT", href: "/about" },
-    { label: "CONTACT", href: "/contact" },
+    { label: "PRODUCTS", href: "/#products" },
+    { label: "ABOUT US", href: "/#about" },
+    { label: "CONTACT", href: "/#contact" },
   ],
 };

@@ -17,35 +17,35 @@ interface ServicesProps {
 const defaultServices: ServiceItem[] = [
   {
     id: 1,
-    title: "Screws",
+    title: "Optical Fibers",
     description:
-      "More than 100K different kinds of fasteners, such as nuts, screws, bolts, washers, pins, anchor bolts, etc. and supplement with special items, tailored to your application.",
-    background: "/images/service1.jpg",
-    href: "/products/screws",
+      "Single-mode, multimode, and specialty fibers built around transmission distance, bend performance, density, and installation conditions.",
+    background: "/images/corelink-fiber-closeup.jpg",
+    href: "/#contact",
   },
   {
     id: 2,
-    title: "Terminal",
+    title: "Fiber Optic Cables",
     description:
-      'Serving as a "bridge" between the cable and the equipment terminal, the robust structure enables safe, reliable, and convenient electrical connections.',
-    background: "/images/service3.jpg",
-    href: "/products/terminals",
+      "Indoor, outdoor, indoor/outdoor, and specialty cable constructions for backbone, access, campus, and industrial networks.",
+    background: "/images/corelink-fiber-hero.jpg",
+    href: "/#contact",
   },
   {
     id: 3,
-    title: "Cable Lug",
+    title: "Cable Assemblies",
     description:
-      "High clamping force, reliable, user-friendly, cost-effective, broad wire range compatibility.",
-    background: "/images/service2.jpg",
-    href: "/products/lug",
+      "Single-fiber and multifiber assemblies configured for clean deployment, dependable performance, and high-density environments.",
+    background: "/images/corelink-network-rack.jpg",
+    href: "/#contact",
   },
   {
     id: 4,
-    title: "Spring",
+    title: "Connectivity & Components",
     description:
-      "More than 50K different kinds of Springs, such as Compression Spring, Tension/Extension Spring, Torsion Spring, Leaf Spring, Disc Spring, etc.",
-    background: "/images/service4.jpg",
-    href: "/products/spring",
+      "MPO, MT, adapters, FAU, splitters, conversion modules, and copper systems that complete the physical layer.",
+    background: "/images/scenarios5.png",
+    href: "/#contact",
   },
 ];
 
@@ -70,7 +70,7 @@ export const Services = ({ services = defaultServices }: ServicesProps) => {
 
               {/* Content */}
               <div className="relative h-full flex flex-col justify-end p-4 sm:p-6">
-                <h3 className="text-white hover:text-[#FC5220]/90 text-xl sm:text-2xl md:text-3xl font-bold mb-3 transition-all duration-500">
+                <h3 className="text-white hover:text-[#9e92ff] text-xl sm:text-2xl md:text-3xl font-bold mb-3 transition-all duration-500">
                   {service.title}
                 </h3>
 
@@ -90,7 +90,7 @@ export const Services = ({ services = defaultServices }: ServicesProps) => {
                 {service.href ? (
                   <a
                     href={service.href}
-                    className={`inline-flex items-center gap-2 text-sm sm:text-base font-medium transition-colors duration-300 text-white md:group-hover:text-[#FC5220]/90`}
+                    className="inline-flex items-center gap-2 text-sm sm:text-base font-medium transition-colors duration-300 text-white md:group-hover:text-[#9e92ff]"
                   >
                     Read More
                     <ArrowRight className="size-4" />
@@ -98,7 +98,7 @@ export const Services = ({ services = defaultServices }: ServicesProps) => {
                 ) : (
                   <a
                     href="#"
-                    className={`inline-flex items-center gap-2 text-sm sm:text-base font-medium transition-colors duration-300 text-white md:group-hover:text-[#FC5220]/90`}
+                    className="inline-flex items-center gap-2 text-sm sm:text-base font-medium transition-colors duration-300 text-white md:group-hover:text-[#9e92ff]"
                   >
                     Read More
                     <ArrowRight className="size-4" />

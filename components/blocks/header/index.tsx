@@ -1,9 +1,8 @@
 "use client";
 
 import { Menu, X } from "lucide-react";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import UserButton from "@/components/auth/user-button";
+import { CoreLinkBrand } from "@/components/corelink-brand";
 import { Button } from "@/components/ui/button";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
@@ -11,8 +10,6 @@ import { cn } from "@/lib/utils";
 import { defaultNavConfig } from "./config";
 
 interface HeaderProps {
-  logo?: string;
-  darkLogo?: string;
   brandName?: string;
   navigation?: Array<{
     label: string;
@@ -23,8 +20,6 @@ interface HeaderProps {
 }
 
 export function Header({
-  logo = defaultNavConfig.logo,
-  darkLogo = defaultNavConfig.darkLogo,
   brandName = defaultNavConfig.brandName,
   navigation = defaultNavConfig.items,
   className,
@@ -58,8 +53,6 @@ export function Header({
       <div className="hidden lg:block h-full">
         <DesktopHeader
           isScrolled={isScrolled}
-          logo={logo}
-          darkLogo={darkLogo || logo}
           navigation={navigation}
           brandName={brandName}
           navColor={navColor}
@@ -71,8 +64,6 @@ export function Header({
           isOpen={isMobileMenuOpen}
           setIsOpen={setIsMobileMenuOpen}
           navigation={navigation}
-          logo={logo}
-          darkLogo={darkLogo || logo}
           brandName={brandName}
           navColor={navColor}
         />
@@ -83,15 +74,11 @@ export function Header({
 
 function DesktopHeader({
   isScrolled,
-  logo,
-  darkLogo,
   navigation,
   brandName,
   navColor,
 }: {
   isScrolled: boolean;
-  logo: string;
-  darkLogo: string;
   navigation: Array<{ label: string; href: string }>;
   brandName: string;
   navColor?: string;
@@ -107,14 +94,14 @@ function DesktopHeader({
     ) {
       segments.shift();
     }
-    return "/" + segments.join("/");
+    return `/${segments.join("/")}`;
   };
 
   const currentPath = normalizePath(pathname);
 
   const isActive = (href: string) => {
     if (href === "/") return currentPath === "/";
-    return currentPath === href || currentPath.startsWith(href + "/");
+    return currentPath === href || currentPath.startsWith(`${href}/`);
   };
 
   return (
@@ -122,14 +109,8 @@ function DesktopHeader({
       <div className="container mx-auto h-full flex items-center justify-between py-5 px-4 md:px-6 lg:px-8">
         <div className="h-full flex items-center gap-2 flex-shrink-0">
           <Link href="/" className="flex-shrink-0">
-            <Image
-              src={isScrolled ? darkLogo : logo}
-              alt={brandName}
-              width={150}
-              height={54}
-              priority
-              className="w-[120px] lg:w-[150px] h-[43px] lg:h-[54px] object-contain"
-            />
+            <span className="sr-only">{brandName}</span>
+            <CoreLinkBrand inverted={!isScrolled} />
           </Link>
         </div>
         <div
@@ -143,8 +124,8 @@ function DesktopHeader({
               key={item.href}
               href={item.href}
               className={cn(
-                "hover:text-[#FC5220] transition-colors text-sm lg:text-lg py-2 px-2 lg:px-4 whitespace-nowrap",
-                isActive(item.href) && "text-[#FC5220]",
+                "hover:text-[#8a7cff] transition-colors text-sm lg:text-base py-2 px-2 lg:px-4 whitespace-nowrap",
+                isActive(item.href) && "text-[#8a7cff]",
               )}
             >
               {item.label}
@@ -157,10 +138,16 @@ function DesktopHeader({
             (isScrolled ? "text-[#3D3D3D] dark:text-[#E5E5E5]" : "text-white")
           }`}
         >
-          {/* <Link href="/" className="font-bold text-xl">
-            Login
-          </Link> */}
-          <UserButton />
+          <Link
+            href="/#contact"
+            className={`rounded-sm border px-5 py-2.5 text-sm font-bold transition-colors ${
+              isScrolled
+                ? "border-[#11131b] bg-[#11131b] text-white hover:bg-[#7765ff]"
+                : "border-white/60 bg-white text-[#11131b] hover:border-[#8a7cff] hover:bg-[#8a7cff] hover:text-white"
+            }`}
+          >
+            REQUEST A QUOTE
+          </Link>
         </div>
       </div>
     </div>
@@ -172,8 +159,6 @@ function MobileHeader({
   isOpen,
   setIsOpen,
   navigation,
-  logo,
-  darkLogo,
   brandName,
   navColor,
 }: {
@@ -181,8 +166,6 @@ function MobileHeader({
   isOpen: boolean;
   setIsOpen: (open: boolean) => void;
   navigation: Array<{ label: string; href: string }>;
-  logo: string;
-  darkLogo: string;
   brandName: string;
   navColor?: string;
 }) {
@@ -197,14 +180,14 @@ function MobileHeader({
     ) {
       segments.shift();
     }
-    return "/" + segments.join("/");
+    return `/${segments.join("/")}`;
   };
 
   const currentPath = normalizePath(pathname);
 
   const isActive = (href: string) => {
     if (href === "/") return currentPath === "/";
-    return currentPath === href || currentPath.startsWith(href + "/");
+    return currentPath === href || currentPath.startsWith(`${href}/`);
   };
 
   useEffect(() => {
@@ -234,14 +217,8 @@ function MobileHeader({
       <div className="min-h-[72px] w-full flex items-center justify-between py-3 px-4">
         <div className="flex items-center gap-2">
           <Link href="/" className="flex-shrink-0">
-            <Image
-              src={isScrolled ? darkLogo : logo}
-              alt={brandName}
-              width={120}
-              height={43}
-              priority
-              className="w-[120px] h-[43px] object-contain"
-            />
+            <span className="sr-only">{brandName}</span>
+            <CoreLinkBrand inverted={!isScrolled && !isOpen} compact />
           </Link>
         </div>
         <Button
@@ -250,7 +227,7 @@ function MobileHeader({
           size="sm"
           onClick={toggleMenu}
           className={`transition-colors p-2 ${
-            isScrolled ? "text-[#EA9320] dark:text-[#E5E5E5]" : "text-[#EA9320]"
+            isScrolled ? "text-[#7765ff] dark:text-[#E5E5E5]" : "text-white"
           }`}
         >
           {isOpen ? (
@@ -267,11 +244,11 @@ function MobileHeader({
           isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className={`px-4 pb-4 ${
-          isScrolled
-            ? "bg-white"
-            : "bg-black/40 backdrop-blur-md"
-        }`}>
+        <div
+          className={`px-4 pb-4 ${
+            isScrolled ? "bg-white" : "bg-black/40 backdrop-blur-md"
+          }`}
+        >
           {/* Navigation Links */}
           <nav className="space-y-2 mb-4">
             {navigation.map((item) => (
@@ -280,12 +257,12 @@ function MobileHeader({
                 href={item.href}
                 onClick={closeMenu}
                 className={cn(
-                  `block font-bold text-lg py-3 px-4 rounded-lg transition-colors hover:text-[#FC5220]`,
+                  `block font-bold text-lg py-3 px-4 rounded-lg transition-colors hover:text-[#8a7cff]`,
                   navColor ||
                     (isScrolled
                       ? "text-[#3D3D3D] dark:text-[#E5E5E5] hover:bg-gray-100 dark:hover:bg-gray-800"
                       : "text-white hover:bg-white/10"),
-                  isActive(item.href) ? "text-[#FC5220]" : "",
+                  isActive(item.href) ? "text-[#8a7cff]" : "",
                 )}
               >
                 {item.label}
@@ -293,24 +270,21 @@ function MobileHeader({
             ))}
           </nav>
 
-          {/* Auth Buttons */}
-          <div className={`space-y-3 pt-4 border-t ${
-            isScrolled
-              ? "border-gray-300 dark:border-gray-700"
-              : "border-white/20"
-          }`}>
-            {/* <Link
-              href="/"
+          {/* Primary action */}
+          <div
+            className={`space-y-3 pt-4 border-t ${
+              isScrolled
+                ? "border-gray-300 dark:border-gray-700"
+                : "border-white/20"
+            }`}
+          >
+            <Link
+              href="/#contact"
               onClick={closeMenu}
-              className={`block text-center py-3 px-4 rounded-lg transition-colors ${
-                isScrolled
-                  ? "text-[#3D3D3D] dark:text-[#E5E5E5] hover:bg-gray-100 dark:hover:bg-gray-800"
-                  : "text-[#3D3D3D] hover:bg-white/10"
-              }`}
+              className="block rounded-sm bg-[#7765ff] px-4 py-3 text-center font-bold text-white"
             >
-              Login
-            </Link> */}
-            <UserButton />
+              REQUEST A QUOTE
+            </Link>
           </div>
         </div>
       </div>

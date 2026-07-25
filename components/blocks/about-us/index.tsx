@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
 interface AboutUsProps {
@@ -37,8 +38,8 @@ export const AboutUs = ({
             <div className="flex flex-col gap-4 mb-8">
               {features.map((item) => (
                 <div className="flex items-center gap-2" key={item}>
-                  <div className="size-6 bg-[#FC5220]/10 rounded-full flex items-center justify-center">
-                    <Check className="size-4 text-[#FC5220]" />
+                  <div className="size-6 bg-[#7765ff]/10 rounded-full flex items-center justify-center">
+                    <Check className="size-4 text-[#7765ff]" />
                   </div>
                   <p className="text-[#666]">{item}</p>
                 </div>
@@ -50,23 +51,24 @@ export const AboutUs = ({
                   variant="outline"
                   asChild
                   style={{
-                    background:
-                      "linear-gradient(0deg, #EA9320, #EA9320), #FFCA37",
+                    background: "linear-gradient(135deg, #7765ff, #4f8dff)",
                   }}
                   className="text-white hover:text-white rounded-sm"
                 >
-                  <a href={buttonSecondary.href} target="_blank">
-                    {buttonSecondary.text}
-                  </a>
+                  <a href={buttonSecondary.href}>{buttonSecondary.text}</a>
                 </Button>
               </div>
             )}
           </div>
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="max-h-96 w-full rounded-md object-cover"
-          />
+          {imageSrc ? (
+            <Image
+              src={imageSrc}
+              alt={imageAlt || "CoreLink Cable"}
+              width={1200}
+              height={800}
+              className="max-h-96 w-full rounded-md object-cover"
+            />
+          ) : null}
         </div>
       </div>
     </section>

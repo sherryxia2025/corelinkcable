@@ -1,7 +1,6 @@
 import { defineI18nUI } from "fumadocs-ui/i18n";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Plus_Jakarta_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
@@ -14,24 +13,6 @@ import { i18n } from "@/lib/i18n";
 import { AuthProvider } from "@/providers/auth-provider";
 import { ThemeProvider } from "@/providers/theme-provider";
 import "../globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const plusJakartaSans = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta-sans",
-  subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
 
 const ltSaeada = localFont({
   variable: "--font-lt-saeada",
@@ -97,29 +78,37 @@ const ltSaeada = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    process.env.NEXT_PUBLIC_APP_URL || "https://www.corelinkcable.com",
   ),
-  title: process.env.NEXT_PUBLIC_APP_NAME || "Untitled App",
-  description: process.env.NEXT_PUBLIC_APP_DESCRIPTION || "",
+  title: {
+    default: process.env.NEXT_PUBLIC_APP_NAME || "CoreLink Cable",
+    template: "%s | CoreLink Cable",
+  },
+  description:
+    process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
+    "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
+  openGraph: {
+    title: "CoreLink Cable | Built for Every Critical Connection",
+    description:
+      "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
+    url: "https://www.corelinkcable.com",
+    siteName: "CoreLink Cable",
+    images: [{ url: "/og.png", width: 1536, height: 1024 }],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CoreLink Cable | Built for Every Critical Connection",
+    description:
+      "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
+    images: ["/og.png"],
+  },
 };
 
 const { provider } = defineI18nUI(i18n, {
   translations: {
     en: {
       displayName: "English",
-    },
-    zh: {
-      displayName: "Chinese",
-      search: "查找文档",
-      searchNoResult: "没有找到结果",
-      toc: "目录",
-      tocNoHeadings: "没有标题",
-      lastUpdate: "最后更新",
-      chooseLanguage: "选择语言",
-      nextPage: "下一页",
-      previousPage: "上一页",
-      chooseTheme: "选择主题",
-      editOnGithub: "在 GitHub 上编辑",
     },
   },
 });
@@ -140,9 +129,7 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${plusJakartaSans.variable} ${ltSaeada.variable} antialiased`}
-      >
+      <body className={`${ltSaeada.variable} antialiased`}>
         <ThemeProvider>
           <AuthProvider>
             <NextIntlClientProvider messages={messages}>
