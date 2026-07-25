@@ -31,11 +31,7 @@ export default async function UserCenterLayout({
       )}
     >
       {/* Top Navigation */}
-      <Header
-        logo="/images/dark-logo.png"
-        darkLogo="/images/dark-logo.png"
-        navColor="#3D3D3D"
-      />
+      <Header />
 
       <div className="pt-16">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
