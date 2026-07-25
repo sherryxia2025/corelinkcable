@@ -2,51 +2,52 @@ export const contactConfig = {
   // contact methods
   contactMethods: {
     email: {
-      title: "Send E-Mail",
+      title: "Sales enquiries",
       value: "sherryxia05061@gmail.com",
     },
     phone: {
-      title: "Call Anytime",
+      title: "Phone",
       value: "+86 15895423425",
     },
     whatsapp: {
-      title: "Whatsapp",
+      title: "WhatsApp",
       value: "15895423425",
     },
   },
   // form title
-  formTitle: "Write Us Something",
+  formTitle: "Project enquiry",
   // form fields
   formFields: {
     name: {
       label: "Your Name",
-      placeholder: "Your name here",
+      placeholder: "Name",
       error: "Name is required",
     },
     email: {
       label: "Your Email",
-      placeholder: "Your email here",
+      placeholder: "Business email",
       error: "Invalid email address",
     },
     contactNumber: {
       label: "Contact Number",
-      placeholder: "Contact number here",
+      placeholder: "Phone or WhatsApp",
       error: "Contact number is required",
     },
     subject: {
       label: "Subject",
-      placeholder: "Subject here",
+      placeholder: "Project or product requirement",
       error: "Subject is required",
     },
     message: {
       label: "Message",
-      placeholder: "Tell us a few words",
+      placeholder:
+        "Application, environment, product type, quantity, and target schedule",
       error: "Message is required",
     },
   },
   // button text
   button: {
-    submit: "Send Message",
+    submit: "Submit Enquiry",
     submitting: "Sending...",
   },
   // messages

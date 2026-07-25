@@ -1,89 +1,84 @@
-import Link from "next/link";
 import { CoreLinkBrand } from "@/components/corelink-brand";
+import { Link } from "@/i18n/navigation";
 
-interface MenuItem {
-  title: string;
-  links: {
-    text: string;
-    url: string;
-  }[];
-}
+const footerGroups = [
+  {
+    title: "COMPANY",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "About Us", href: "/about" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
+  {
+    title: "PRODUCT SYSTEMS",
+    links: [
+      { label: "Optical Fiber", href: "/products#optical-fiber" },
+      { label: "Fiber Optic Cable", href: "/products#fiber-cable" },
+      { label: "Cable Assemblies", href: "/products#assemblies" },
+      { label: "Connectivity & Copper", href: "/products#connectivity" },
+    ],
+  },
+  {
+    title: "INFORMATION",
+    links: [
+      { label: "Privacy Policy", href: "/privacy-policy" },
+      { label: "Terms of Service", href: "/terms-of-service" },
+      { label: "Request a Quote", href: "/contact" },
+    ],
+  },
+];
 
-interface FooterProps {
-  copyright?: string;
-  menuItems?: MenuItem[];
-}
-
-const defaultConfig = {
-  copyright: "© 2026 CoreLink Cable. All rights reserved.",
-  menuItems: [
-    {
-      title: "EXPLORE",
-      links: [
-        { text: "Home", url: "/" },
-        { text: "Products", url: "/#products" },
-        { text: "About Us", url: "/#about" },
-        { text: "Contact", url: "/#contact" },
-      ],
-    },
-    {
-      title: "PRODUCT LINES",
-      links: [
-        { text: "Optical Fibers", url: "/#products" },
-        { text: "Fiber Optic Cables", url: "/#products" },
-        { text: "Cable Assemblies", url: "/#products" },
-        { text: "Connectivity", url: "/#products" },
-      ],
-    },
-    {
-      title: "LEGAL",
-      links: [
-        { text: "Terms of Service", url: "/terms-of-service" },
-        { text: "Privacy Policy", url: "/privacy-policy" },
-      ],
-    },
-  ],
-};
-
-export const Footer = ({
-  copyright = defaultConfig.copyright,
-  menuItems = defaultConfig.menuItems,
-}: FooterProps) => {
+export function Footer() {
   return (
-    <section className="py-20 bg-[#151515] text-[rgba(255,255,255,0.5)]">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
-        <footer>
-          <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
-            <div className="col-span-2 mb-8 lg:mb-0">
-              <div className="flex items-center gap-2 lg:justify-start">
-                <Link href="/" aria-label="CoreLink Cable home">
-                  <CoreLinkBrand inverted />
-                </Link>
-              </div>
-              <p className="mt-5 max-w-sm leading-relaxed">
-                Optical fiber, cable, connectivity, and copper systems for
-                dependable network infrastructure.
-              </p>
-              <p className="mt-5 font-bold">{copyright}</p>
+    <footer className="border-t-4 border-[#1268e8] bg-[#071524] text-white">
+      <div className="container mx-auto px-4 py-14 md:px-6 lg:px-8 lg:py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
+          <div>
+            <Link href="/" aria-label="CoreLink Cable home">
+              <CoreLinkBrand inverted />
+            </Link>
+            <p className="mt-6 max-w-sm text-sm leading-6 text-white/62">
+              Optical and copper connection systems engineered for dependable
+              network infrastructure.
+            </p>
+            <div className="mt-8 flex items-center gap-3 text-[10px] font-bold tracking-[0.16em] text-white/45">
+              <span>CORE</span>
+              <span className="h-px w-5 bg-[#1268e8]" />
+              <span>LINK</span>
+              <span className="h-px w-5 bg-[#1268e8]" />
+              <span>CABLE</span>
             </div>
-            {menuItems.map((section) => (
-              <div key={section.title}>
-                <h3 className="mb-4 font-bold text-white">{section.title}</h3>
-                <ul className="text-muted-foreground space-y-4">
-                  {section.links.map((link) => (
-                    <li
-                      key={`${link.text}-${link.url}`}
-                      className="hover:text-white font-medium"
-                    >
-                      <a href={link.url}>{link.text}</a>
+          </div>
+
+          <div className="grid gap-8 sm:grid-cols-3">
+            {footerGroups.map((group) => (
+              <div key={group.title}>
+                <h2 className="border-b border-white/14 pb-3 text-[10px] font-bold tracking-[0.16em] text-white/45">
+                  {group.title}
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {group.links.map((link) => (
+                    <li key={link.href + link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-sm text-white/72 transition-colors hover:text-[#64a3ff]"
+                      >
+                        {link.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
           </div>
-        </footer>
+        </div>
+
+        <div className="mt-14 flex flex-col gap-2 border-t border-white/12 pt-6 text-[10px] tracking-[0.1em] text-white/38 sm:flex-row sm:items-center sm:justify-between">
+          <span>© 2026 CORELINK CABLE. ALL RIGHTS RESERVED.</span>
+          <span>THE CORE THAT CONNECTS EVERYTHING.</span>
+        </div>
       </div>
-    </section>
+    </footer>
   );
-};
+}

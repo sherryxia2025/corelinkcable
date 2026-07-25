@@ -21,7 +21,7 @@ export default async function TermsOfServicePage(
   return (
     <article className="min-h-screen w-full bg-white dark:bg-[#212121] transition-colors">
       <Header />
-      <div className="max-w-7xl mx-auto px-4 md:px-5 pt-24 pb-16">
+      <div className="mx-auto max-w-7xl px-4 pb-16 pt-32 md:px-5 lg:pt-40">
         <h1 className="text-4xl md:text-5xl font-bold text-[#3D3D3D] dark:text-[#E5E5E5] mb-4">
           {page.data.title}
         </h1>

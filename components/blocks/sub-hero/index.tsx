@@ -33,7 +33,7 @@ export const SubHero = ({
   return (
     <section
       className={cn(
-        "relative flex items-center w-full py-16 md:py-24 lg:py-32 bg-black overflow-hidden",
+        "relative mt-[72px] flex min-h-[360px] w-full items-center overflow-hidden bg-[#071524] py-16 lg:mt-[108px]",
         className,
       )}
       style={
@@ -48,22 +48,26 @@ export const SubHero = ({
       }
     >
       {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/50" aria-hidden />
+      <div
+        className="absolute inset-0 bg-[linear-gradient(90deg,rgba(7,21,36,.96),rgba(7,21,36,.42))]"
+        aria-hidden
+      />
 
       {/* Background overlay with industrial elements */}
       <div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 50%, rgba(234, 147, 32, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(234, 147, 32, 0.2) 0%, transparent 50%)",
+            "linear-gradient(rgba(255,255,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.12) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
         }}
       />
 
       {/* Content */}
-      <div className="container mx-auto relative mt-8 px-4 md:px-6 lg:px-8">
+      <div className="container relative mx-auto px-4 md:px-6 lg:px-8">
         <div className="max-w-4xl">
           {/* Page Title */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight sm:leading-tight md:leading-tight mb-5">
+          <h1 className="mb-5 text-3xl font-semibold leading-tight tracking-[-0.02em] text-white sm:text-4xl lg:text-[44px]">
             {title}
           </h1>
           {/* Breadcrumb Navigation */}
@@ -90,7 +94,7 @@ export const SubHero = ({
                         {item.href ? (
                           <BreadcrumbLink
                             asChild
-                            className="text-white hover:text-[#EA9320] transition-colors text-sm sm:text-base"
+                            className="text-sm text-white transition-colors hover:text-[#64a3ff] sm:text-base"
                           >
                             <Link href={item.href}>{item.label}</Link>
                           </BreadcrumbLink>
@@ -100,7 +104,7 @@ export const SubHero = ({
                           </span>
                         )}
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-[#EA9320] mx-1 sm:mx-2">
+                      <BreadcrumbSeparator className="mx-1 text-[#64a3ff] sm:mx-2">
                         &gt;
                       </BreadcrumbSeparator>
                     </Fragment>
