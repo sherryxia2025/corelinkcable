@@ -71,7 +71,7 @@
 }
 
 :root {
-  --radius: 0.125rem;
+  --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -142,12 +142,7 @@
 html,
 body {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
-  line-height: 1.5;
-  text-rendering: optimizeLegibility;
-}
-
-html {
-  scroll-behavior: smooth;
+  line-height: calc(1em + 8px);
 }
 
 /* reset css for details */

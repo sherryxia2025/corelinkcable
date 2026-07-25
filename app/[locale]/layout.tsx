@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
     "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
   openGraph: {
-    title: "CoreLink Cable | The Core That Connects Everything",
+    title: "CoreLink Cable | Built for Every Critical Connection",
     description:
       "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
     url: "https://www.corelinkcable.com",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CoreLink Cable | The Core That Connects Everything",
+    title: "CoreLink Cable | Built for Every Critical Connection",
     description:
       "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
     images: ["/og.png"],

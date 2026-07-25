@@ -33,7 +33,7 @@ export default async function UserCenterLayout({
       {/* Top Navigation */}
       <Header />
 
-      <div className="pt-28 lg:pt-36">
+      <div className="pt-16">
         <div className="max-w-7xl mx-auto px-4 md:px-6">
           {/* User Info Section */}
           <div className="py-8 border-b border-gray-200 dark:border-gray-700">
