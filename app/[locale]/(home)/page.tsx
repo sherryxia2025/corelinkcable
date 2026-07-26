@@ -6,7 +6,6 @@ import { Header } from "@/components/blocks/header";
 import { Hero } from "@/components/blocks/hero";
 import Why from "@/components/blocks/why";
 import { Link } from "@/i18n/navigation";
-import { getProductCategories } from "@/models/product-category";
 
 export const metadata: Metadata = {
   title: "CoreLink Cable | Built for Every Critical Connection",
@@ -69,30 +68,29 @@ const portfolioContent = [
     title: "Data Center",
     description:
       "Enabling high-speed data transmission, low-latency interconnection and large-scale computing clusters.",
+    image: "/images/corelink-portfolio-data-center.jpg",
   },
   {
     title: "AI Intelligent Communications",
     description:
       "Deliver high-bandwidth, stable and reliable information channels for intelligent computing, model training and real-time data interaction.",
+    image: "/images/corelink-portfolio-ai.jpg",
   },
   {
     title: "Enterprise & Industrial Internet",
     description:
       "Connect equipment, control systems and enterprise data platforms, delivering consistent stable connectivity via optical cables.",
+    image: "/images/corelink-portfolio-industrial.jpg",
   },
   {
     title: "Cable Ties for Optical Cabling",
     description:
       "Supports optical cable routing, harness management, data center O&M and industrial wiring applications.",
+    image: "/images/corelink-portfolio-cable-ties.jpg",
   },
 ];
 
-export default async function HomePage() {
-  const categories = await getProductCategories({
-    page: 1,
-    limit: 4,
-  });
-
+export default function HomePage() {
   return (
     <>
       <Header />
@@ -112,46 +110,35 @@ export default async function HomePage() {
             </div>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
-              {categories.map((category, index) => {
-                const content = portfolioContent[index];
-                const title = content?.title || category.title;
-                const description =
-                  content?.description || category.description;
-
-                return (
-                  <article
-                    key={category.uuid}
-                    className="group relative min-h-[390px] overflow-hidden rounded-md bg-[#080b1b] md:min-h-[460px]"
-                  >
-                    {category.coverUrl ? (
-                      <Image
-                        src={category.coverUrl}
-                        alt={title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    ) : null}
-                    <div
-                      className="absolute inset-0 bg-gradient-to-t from-[#050714] via-[#050714]/25 to-transparent transition-colors duration-500 group-hover:from-[#050714] group-hover:via-[#050714]/45"
-                      aria-hidden
-                    />
-                    <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-                      <h3 className="text-2xl font-extrabold tracking-[-0.03em]">
-                        {title}
-                      </h3>
-                      <div className="mt-4 h-px bg-white/25" />
-                      {description ? (
-                        <div className="mt-4 max-h-32 overflow-hidden transition-[max-height] duration-500 md:max-h-0 md:group-hover:max-h-40">
-                          <p className="translate-y-0 text-sm leading-6 text-white/75 opacity-100 transition-all duration-500 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
-                            {description}
-                          </p>
-                        </div>
-                      ) : null}
+              {portfolioContent.map((item) => (
+                <article
+                  key={item.title}
+                  className="group relative min-h-[390px] overflow-hidden rounded-md bg-[#080b1b] md:min-h-[460px]"
+                >
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-[#050714] via-[#050714]/25 to-transparent transition-colors duration-500 group-hover:from-[#050714] group-hover:via-[#050714]/45"
+                    aria-hidden
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                    <h3 className="text-2xl font-extrabold tracking-[-0.03em]">
+                      {item.title}
+                    </h3>
+                    <div className="mt-4 h-px bg-white/25" />
+                    <div className="mt-4 max-h-32 overflow-hidden transition-[max-height] duration-500 md:max-h-0 md:group-hover:max-h-40">
+                      <p className="translate-y-0 text-sm leading-6 text-white/75 opacity-100 transition-all duration-500 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+                        {item.description}
+                      </p>
                     </div>
-                  </article>
-                );
-              })}
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
