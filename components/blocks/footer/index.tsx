@@ -21,18 +21,18 @@ const defaultConfig = {
       title: "EXPLORE",
       links: [
         { text: "Home", url: "/" },
-        { text: "Products", url: "/#products" },
-        { text: "About Us", url: "/#about" },
-        { text: "Contact", url: "/#contact" },
+        { text: "About Us", url: "/about" },
+        { text: "Products", url: "/products" },
+        { text: "Contact", url: "/contact" },
       ],
     },
     {
       title: "PRODUCT LINES",
       links: [
-        { text: "Optical Fibers", url: "/#products" },
-        { text: "Fiber Optic Cables", url: "/#products" },
-        { text: "Cable Assemblies", url: "/#products" },
-        { text: "Connectivity", url: "/#products" },
+        { text: "Optical Fibers", url: "/products" },
+        { text: "Fiber Optic Cables", url: "/products" },
+        { text: "Cable Assemblies", url: "/products" },
+        { text: "Connectivity", url: "/products" },
       ],
     },
     {

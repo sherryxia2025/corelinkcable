@@ -12,8 +12,8 @@ export const defaultNavConfig: NavConfig = {
   brandName: process.env.NEXT_PUBLIC_APP_NAME || "CoreLink Cable",
   items: [
     { label: "HOME", href: "/" },
-    { label: "PRODUCTS", href: "/#products" },
-    { label: "ABOUT US", href: "/#about" },
-    { label: "CONTACT", href: "/#contact" },
+    { label: "ABOUT US", href: "/about" },
+    { label: "PRODUCTS", href: "/products" },
+    { label: "CONTACT", href: "/contact" },
   ],
 };

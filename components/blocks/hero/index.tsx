@@ -30,7 +30,7 @@ const defaultItems: HeroItem[] = [
     description:
       "Optical fiber, cable, and connectivity systems for the networks that keep the world moving.",
     buttonText: "EXPLORE OUR PRODUCTS",
-    buttonHref: "/#products",
+    buttonHref: "/products",
   },
   {
     background: "/images/corelink-fiber-closeup.jpg",
@@ -38,7 +38,7 @@ const defaultItems: HeroItem[] = [
     description:
       "Low-loss fiber families engineered around transmission, routing, density, and real installation conditions.",
     buttonText: "VIEW FIBER SOLUTIONS",
-    buttonHref: "/#products",
+    buttonHref: "/products",
   },
   {
     background: "/images/corelink-network-rack.jpg",
@@ -46,7 +46,7 @@ const defaultItems: HeroItem[] = [
     description:
       "A coordinated portfolio for data centers, telecom, industrial systems, energy, and smart infrastructure.",
     buttonText: "START A PROJECT",
-    buttonHref: "/#contact",
+    buttonHref: "/contact",
   },
 ];
 

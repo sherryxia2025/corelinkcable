@@ -139,7 +139,7 @@ function DesktopHeader({
           }`}
         >
           <Link
-            href="/#contact"
+            href="/contact"
             className={`rounded-sm border px-5 py-2.5 text-sm font-bold transition-colors ${
               isScrolled
                 ? "border-[#11131b] bg-[#11131b] text-white hover:bg-[#7765ff]"
@@ -279,7 +279,7 @@ function MobileHeader({
             }`}
           >
             <Link
-              href="/#contact"
+              href="/contact"
               onClick={closeMenu}
               className="block rounded-sm bg-[#7765ff] px-4 py-3 text-center font-bold text-white"
             >

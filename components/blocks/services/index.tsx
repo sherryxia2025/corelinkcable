@@ -21,7 +21,7 @@ const defaultServices: ServiceItem[] = [
     description:
       "Single-mode, multimode, and specialty fibers built around transmission distance, bend performance, density, and installation conditions.",
     background: "/images/corelink-fiber-closeup.jpg",
-    href: "/#contact",
+    href: "/contact",
   },
   {
     id: 2,
@@ -29,7 +29,7 @@ const defaultServices: ServiceItem[] = [
     description:
       "Indoor, outdoor, indoor/outdoor, and specialty cable constructions for backbone, access, campus, and industrial networks.",
     background: "/images/corelink-fiber-hero.jpg",
-    href: "/#contact",
+    href: "/contact",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const defaultServices: ServiceItem[] = [
     description:
       "Single-fiber and multifiber assemblies configured for clean deployment, dependable performance, and high-density environments.",
     background: "/images/corelink-network-rack.jpg",
-    href: "/#contact",
+    href: "/contact",
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const defaultServices: ServiceItem[] = [
     description:
       "MPO, MT, adapters, FAU, splitters, conversion modules, and copper systems that complete the physical layer.",
     background: "/images/scenarios5.png",
-    href: "/#contact",
+    href: "/contact",
   },
 ];
 

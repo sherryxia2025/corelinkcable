@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import { Contact } from "@/components/blocks/contact";
 import { Footer } from "@/components/blocks/footer";
 import { Header } from "@/components/blocks/header";
 import { SubHero } from "@/components/blocks/sub-hero";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description:
+    "Contact CoreLink Cable about optical fiber, cable, connectivity, and project requirements.",
+};
 
 export default function ContactPage() {
   return (
@@ -9,7 +16,7 @@ export default function ContactPage() {
       <Header />
       <SubHero
         title="Contact"
-        bgImage="/images/banner_contact.jpg"
+        bgImage="/images/contact-hero.jpg"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
       <Contact />
