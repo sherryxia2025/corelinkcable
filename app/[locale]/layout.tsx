@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   description:
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
     "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
+  icons: {
+    icon: [{ url: "/corelink-favicon.jpg", type: "image/jpeg" }],
+    shortcut: ["/corelink-favicon.jpg"],
+    apple: [{ url: "/corelink-favicon.jpg", type: "image/jpeg" }],
+  },
   openGraph: {
     title: "CoreLink Cable | Built for Every Critical Connection",
     description:
