@@ -16,7 +16,7 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Edit, GripVertical, Plus, Upload } from "lucide-react";
+import { Edit, ExternalLink, GripVertical, Plus, Upload } from "lucide-react";
 import moment from "moment";
 import { useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
@@ -116,6 +116,23 @@ function SortableRow({
       </TableCell>
       <TableCell>
         <div className="flex items-center gap-2">
+          {product.category ? (
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="flex items-center gap-2"
+            >
+              <a
+                href={`/products/${encodeURIComponent(product.category.name)}/${encodeURIComponent(product.name)}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ExternalLink className="h-4 w-4" />
+                View
+              </a>
+            </Button>
+          ) : null}
           <Button
             asChild
             variant="outline"

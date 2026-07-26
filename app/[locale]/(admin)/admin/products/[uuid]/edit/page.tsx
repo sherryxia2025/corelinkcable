@@ -1,13 +1,16 @@
 import Empty from "@/components/blocks/empty";
 import FormSlot from "@/components/dashboard/slots/form";
 import {
+  buildProductDetailMetadata,
+  productDetailToFormData,
+} from "@/lib/product-detail";
+import {
   findProductByName,
   findProductByUuid,
   ProductStatus,
   updateProduct,
 } from "@/models/product";
 import { getProductCategories } from "@/models/product-category";
-import type { Prisma } from "@/prisma/generated/prisma";
 import type { Form as FormSlotType } from "@/types/slots/form";
 
 export default async function EditProductPage({
@@ -26,6 +29,7 @@ export default async function EditProductPage({
     page: 1,
     limit: 100,
   });
+  const productDetail = productDetailToFormData(product.metadata);
 
   const form: FormSlotType = {
     title: "Edit Product",
@@ -43,24 +47,24 @@ export default async function EditProductPage({
     },
     data: {
       ...product,
-      metadata: product.metadata ? JSON.stringify(product.metadata) : "",
+      ...productDetail,
     },
     fields: [
       {
         name: "name",
-        title: "Name",
+        title: "URL Name",
         type: "text",
-        placeholder: "",
+        placeholder: "g-657-a2-bending-insensitive-fiber",
         validation: {
           required: true,
         },
-        tip: "product name should be unique",
+        tip: "Use a unique, URL-friendly identifier.",
       },
       {
         name: "title",
-        title: "Title",
+        title: "Product Name",
         type: "text",
-        placeholder: "",
+        placeholder: "G.657.A2 Bending Insensitive Single-Mode Fiber",
         validation: {
           required: true,
         },
@@ -90,15 +94,79 @@ export default async function EditProductPage({
       },
       {
         name: "description",
-        title: "Description",
+        title: "Short Description",
         type: "textarea",
-        placeholder: "",
+        placeholder:
+          "A concise product summary shown on category and detail pages.",
+        attributes: {
+          rows: 5,
+        },
       },
       {
         name: "coverUrl",
-        title: "Cover URL",
+        title: "Main Product Image",
         type: "image-url",
         placeholder: "Enter cover image URL...",
+      },
+      {
+        name: "galleryUrls",
+        title: "Gallery Image URLs",
+        type: "textarea",
+        placeholder: "One image URL per line",
+        attributes: {
+          rows: 5,
+        },
+        tip: "The main product image is included automatically.",
+      },
+      {
+        name: "model",
+        title: "Model",
+        type: "text",
+        placeholder: "G.657.A2",
+      },
+      {
+        name: "brand",
+        title: "Brand",
+        type: "text",
+        placeholder: "CoreLinkCable",
+      },
+      {
+        name: "characteristics",
+        title: "Key Characteristics",
+        type: "textarea",
+        placeholder: "One characteristic per line",
+        attributes: {
+          rows: 8,
+        },
+      },
+      {
+        name: "detailContent",
+        title: "Product Overview",
+        type: "editor",
+        placeholder: "",
+        tip: "Use headings, paragraphs, lists, links, and images for the full product description.",
+      },
+      {
+        name: "specifications",
+        title: "Technical Specifications",
+        type: "key-value",
+        placeholder: "Add specification",
+        tip: "Add each specification as a name and value pair.",
+      },
+      {
+        name: "applications",
+        title: "Applications",
+        type: "textarea",
+        placeholder: "One application per line",
+        attributes: {
+          rows: 6,
+        },
+      },
+      {
+        name: "datasheetUrl",
+        title: "Datasheet URL",
+        type: "url",
+        placeholder: "https://...",
       },
       {
         name: "sort",
@@ -109,11 +177,10 @@ export default async function EditProductPage({
         value: (product.sort ?? 0).toString(),
       },
       {
-        name: "metadata",
-        title: "Metadata",
+        name: "additionalMetadata",
+        title: "Additional Metadata",
         type: "key-value",
-        placeholder: "添加键值对",
-        value: product.metadata ? JSON.stringify(product.metadata) : "",
+        placeholder: "Add optional key-value data",
       },
     ],
     submit: {
@@ -138,7 +205,6 @@ export default async function EditProductPage({
         const description = data.get("description") as string;
         const coverUrl = data.get("coverUrl") as string;
         const sortStr = data.get("sort") as string;
-        const metadataStr = data.get("metadata") as string;
 
         if (
           !name ||
@@ -156,16 +222,18 @@ export default async function EditProductPage({
           throw new Error("product with same name already exists");
         }
 
-        let metadata: Prisma.InputJsonValue | undefined;
-        if (metadataStr?.trim()) {
-          try {
-            metadata = JSON.parse(metadataStr);
-          } catch {
-            // 如果解析失败，忽略 metadata
-          }
-        }
-
         const sort = sortStr ? Number.parseInt(sortStr, 10) : 0;
+        const metadata = buildProductDetailMetadata({
+          model: data.get("model") as string,
+          brand: data.get("brand") as string,
+          galleryUrls: data.get("galleryUrls") as string,
+          characteristics: data.get("characteristics") as string,
+          detailContent: data.get("detailContent") as string,
+          specifications: data.get("specifications") as string,
+          applications: data.get("applications") as string,
+          datasheetUrl: data.get("datasheetUrl") as string,
+          additionalMetadata: data.get("additionalMetadata") as string,
+        });
 
         const product = {
           name,

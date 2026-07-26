@@ -48,7 +48,7 @@ export default async function ProductCategoryPage({
       <section className="bg-white py-10 md:py-24">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           {products.length > 0 ? (
-            <ProductsGrid products={products} />
+            <ProductsGrid products={products} categoryName={category.name} />
           ) : (
             <div className="text-center py-12">
               <p className="text-gray-400">No products in this category</p>

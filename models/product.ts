@@ -127,6 +127,29 @@ export async function findProductByName(name: string): Promise<Product | null> {
   return product;
 }
 
+export async function findProductByCategoryAndName(
+  categoryName: string,
+  productName: string,
+) {
+  "use cache";
+  cacheLife("days");
+  cacheTag(`product-name:${productName}`);
+  cacheTag(`product-category-name:${categoryName}`);
+
+  return prisma.product.findFirst({
+    where: {
+      name: productName,
+      status: ProductStatus.Online,
+      category: {
+        name: categoryName,
+      },
+    },
+    include: {
+      category: true,
+    },
+  });
+}
+
 export async function getProducts({
   status,
   categoryUuid,

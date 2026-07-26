@@ -1,7 +1,6 @@
-"use client";
-
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import type { Prisma } from "@/prisma/generated/prisma";
+import { Link } from "@/i18n/navigation";
 
 interface ProductCardProps {
   product: {
@@ -10,22 +9,20 @@ interface ProductCardProps {
     title: string | null;
     description: string | null;
     coverUrl: string | null;
-    metadata: Prisma.JsonValue | null;
   };
-  onClick: () => void;
+  href: string;
 }
 
-export function ProductCard({ product, onClick }: ProductCardProps) {
+export function ProductCard({ product, href }: ProductCardProps) {
   return (
-    <button
-      onClick={onClick}
-      type="button"
-      className="group bg-white rounded-xl overflow-hidden flex flex-col shadow-sm hover:shadow-md transition-all duration-300 h-full border border-gray-100 hover:border-gray-200 cursor-pointer text-left"
+    <Link
+      href={href}
+      className="group flex h-full flex-col overflow-hidden rounded-md border border-gray-100 bg-white text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#7765ff]/30 hover:shadow-xl"
     >
       {/* Product Image */}
-      {product.coverUrl && (
-        <div className="w-full h-56 sm:h-64 lg:h-72 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden relative">
-          <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-105">
+      <div className="relative flex h-56 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 sm:h-64 lg:h-72">
+        {product.coverUrl ? (
+          <div className="absolute inset-0 transition-transform duration-500">
             <Image
               src={product.coverUrl}
               alt={product.title || product.name}
@@ -34,21 +31,30 @@ export function ProductCard({ product, onClick }: ProductCardProps) {
               className="object-cover transition-transform duration-500 group-hover:scale-110"
             />
           </div>
-        </div>
-      )}
+        ) : (
+          <span className="text-sm font-medium text-gray-400">
+            Image coming soon
+          </span>
+        )}
+      </div>
 
       {/* Product Info */}
-      <div className="flex-1 p-6 flex flex-col">
-        <h3 className="text-xl font-semibold text-gray-900 mb-4 line-clamp-2">
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="mb-4 line-clamp-2 text-xl font-semibold text-gray-900">
           {product.title || product.name}
         </h3>
 
         {product.description && (
-          <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-wrap break-words">
+          <p className="line-clamp-4 whitespace-pre-wrap break-words text-sm leading-relaxed text-gray-600">
             {product.description}
           </p>
         )}
+
+        <span className="mt-auto flex items-center gap-2 pt-6 text-sm font-bold text-[#7765ff]">
+          View product
+          <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </span>
       </div>
-    </button>
+    </Link>
   );
 }

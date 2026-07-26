@@ -32,7 +32,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export const Contact = () => {
+export const Contact = ({ productName }: { productName?: string }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<FormData>({
@@ -41,8 +41,8 @@ export const Contact = () => {
       name: "",
       email: "",
       contactNumber: "",
-      subject: "",
-      message: "",
+      subject: productName ? `Product inquiry: ${productName}` : "",
+      message: productName ? `I'm interested in ${productName}.` : "",
     },
   });
 

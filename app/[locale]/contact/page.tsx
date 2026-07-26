@@ -10,7 +10,14 @@ export const metadata: Metadata = {
     "Contact CoreLinkCable about optical fiber, cable, connectivity, and project requirements.",
 };
 
-export default function ContactPage() {
+export default async function ContactPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ product?: string }>;
+}) {
+  const { product } = await searchParams;
+  const productName = product?.trim() || undefined;
+
   return (
     <>
       <Header />
@@ -19,7 +26,7 @@ export default function ContactPage() {
         bgImage="/images/corelink-contact-banner.jpg"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
-      <Contact />
+      <Contact productName={productName} />
       <Footer />
     </>
   );

@@ -1,9 +1,4 @@
-"use client";
-
-import { useState } from "react";
-import type { Prisma } from "@/prisma/generated/prisma";
 import { ProductCard } from "./product-card";
-import { ProductViewer } from "./product-viewer";
 
 interface Product {
   uuid: string;
@@ -11,45 +6,23 @@ interface Product {
   title: string | null;
   description: string | null;
   coverUrl: string | null;
-  metadata: Prisma.JsonValue | null;
 }
 
 interface ProductsGridProps {
   products: Product[];
+  categoryName: string;
 }
 
-export function ProductsGrid({ products }: ProductsGridProps) {
-  const [viewerIndex, setViewerIndex] = useState<number | null>(null);
-
-  const handleCardClick = (index: number) => {
-    setViewerIndex(index);
-  };
-
-  const handleCloseViewer = () => {
-    setViewerIndex(null);
-  };
-
+export function ProductsGrid({ products, categoryName }: ProductsGridProps) {
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
-        {products.map((product, index) => (
-          <ProductCard
-            key={product.uuid}
-            product={product}
-            onClick={() => handleCardClick(index)}
-          />
-        ))}
-      </div>
-
-      {viewerIndex !== null && (
-        <ProductViewer
-          products={products}
-          initialIndex={viewerIndex}
-          isOpen={true}
-          onClose={handleCloseViewer}
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-10 lg:grid-cols-4">
+      {products.map((product) => (
+        <ProductCard
+          key={product.uuid}
+          product={product}
+          href={`/products/${encodeURIComponent(categoryName)}/${encodeURIComponent(product.name)}`}
         />
-      )}
-    </>
+      ))}
+    </div>
   );
 }
-
