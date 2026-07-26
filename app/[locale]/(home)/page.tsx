@@ -15,22 +15,22 @@ export const metadata: Metadata = {
 
 const differentiators = [
   {
-    title: "Precision at the Core",
+    title: "Hollow-Core Fiber",
     description:
-      "Fiber and cable families selected around loss, bend performance, density, distance, and real installation conditions.",
-    cover: "/images/corelink-fiber-closeup.jpg",
+      "Light propagates through air instead of solid glass, delivering ultra-low latency and suppressed nonlinear effects to break transmission limits.",
+    cover: "/images/corelink-feature-hollow-core.jpg",
   },
   {
-    title: "One Coordinated Portfolio",
+    title: "Advanced High-Density Optical Cable",
     description:
-      "Optical media, transmission cable, pre-terminated assemblies, connectivity, components, and copper systems in one physical layer.",
-    cover: "/images/corelink-fiber-hero.jpg",
+      "Optimized compact cable structures accommodate higher fiber counts, supporting dense cabling deployment and meeting surging bandwidth demands.",
+    cover: "/images/corelink-feature-high-density.jpg",
   },
   {
-    title: "Ready for Deployment",
+    title: "High-Precision Fiber Connection Technology",
     description:
-      "Clear product choices and project-minded support help network teams move from specification to site with less complexity.",
-    cover: "/images/corelink-network-rack.jpg",
+      "Specialized fusion splicing and optimized connector solutions minimize insertion loss, enabling stable, low-loss interconnection.",
+    cover: "/images/corelink-feature-connection.jpg",
   },
 ];
 
