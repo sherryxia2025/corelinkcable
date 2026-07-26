@@ -8,7 +8,7 @@ import { getProductCategories } from "@/models/product-category";
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Explore CoreLink Cable optical fiber, fiber cable, fiber cable assemblies, and cable tie product families.",
+    "Explore CoreLinkCable optical fiber, fiber cable, fiber cable assemblies, and cable tie product families.",
 };
 
 export default async function ProductsPage() {
@@ -44,10 +44,7 @@ export default async function ProductsPage() {
 
         <section className="pt-14 text-center md:pt-18 lg:pt-20">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-              Product portfolio
-            </p>
-            <h2 className="mx-auto mt-4 max-w-4xl text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
+            <h2 className="mx-auto max-w-4xl text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
               Four product families. One connected portfolio.
             </h2>
             <p className="mx-auto mt-5 max-w-3xl text-base text-[#666] sm:text-lg">

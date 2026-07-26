@@ -18,8 +18,8 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_URL || "https://www.corelinkcable.com",
   ),
   title: {
-    default: process.env.NEXT_PUBLIC_APP_NAME || "CoreLink Cable",
-    template: "%s | CoreLink Cable",
+    default: process.env.NEXT_PUBLIC_APP_NAME || "CoreLinkCable",
+    template: "%s | CoreLinkCable",
   },
   description:
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
@@ -33,17 +33,17 @@ export const metadata: Metadata = {
     apple: [{ url: "/corelink-favicon.jpg", type: "image/jpeg" }],
   },
   openGraph: {
-    title: "CoreLink Cable | Built for Every Critical Connection",
+    title: "CoreLinkCable | Built for Every Critical Connection",
     description:
       "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
     url: "https://www.corelinkcable.com",
-    siteName: "CoreLink Cable",
+    siteName: "CoreLinkCable",
     images: [{ url: "/og.png", width: 1536, height: 1024 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CoreLink Cable | Built for Every Critical Connection",
+    title: "CoreLinkCable | Built for Every Critical Connection",
     description:
       "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
     images: ["/og.png"],

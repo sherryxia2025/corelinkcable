@@ -9,7 +9,7 @@ export interface NavConfig {
 }
 
 export const defaultNavConfig: NavConfig = {
-  brandName: process.env.NEXT_PUBLIC_APP_NAME || "CoreLink Cable",
+  brandName: process.env.NEXT_PUBLIC_APP_NAME || "CoreLinkCable",
   items: [
     { label: "HOME", href: "/" },
     { label: "ABOUT US", href: "/about" },

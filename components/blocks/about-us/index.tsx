@@ -63,7 +63,7 @@ export const AboutUs = ({
           {imageSrc ? (
             <Image
               src={imageSrc}
-              alt={imageAlt || "CoreLink Cable"}
+              alt={imageAlt || "CoreLinkCable"}
               width={1200}
               height={800}
               className="max-h-96 w-full rounded-md object-cover"

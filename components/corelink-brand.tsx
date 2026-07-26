@@ -17,7 +17,7 @@ export function CoreLinkBrand({
     >
       <Image
         src={inverted ? "/corelink-logo-inverted.svg" : "/corelink-logo.svg"}
-        alt="CoreLink Cable — Connecting the Future"
+        alt="CoreLinkCable — Connecting the Future"
         width={920}
         height={230}
         sizes={compact ? "145px" : "193px"}

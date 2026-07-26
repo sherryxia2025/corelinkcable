@@ -7,7 +7,7 @@ import { SubHero } from "@/components/blocks/sub-hero";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact CoreLink Cable about optical fiber, cable, connectivity, and project requirements.",
+    "Contact CoreLinkCable about optical fiber, cable, connectivity, and project requirements.",
 };
 
 export default function ContactPage() {

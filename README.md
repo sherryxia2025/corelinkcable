@@ -1,11 +1,11 @@
-# CoreLink Cable
+# CoreLinkCable
 
-CoreLink Cable is an English-language B2B website for optical fiber, cable,
+CoreLinkCable is an English-language B2B website for optical fiber, cable,
 assemblies, connectivity, optical components, and copper systems.
 
 This repository is based on the GMEX application architecture. The public
 landing experience, navigation, visual system, metadata, and brand content have
-been adapted for CoreLink Cable while the original application capabilities are
+been adapted for CoreLinkCable while the original application capabilities are
 kept available for later development.
 
 ## Development

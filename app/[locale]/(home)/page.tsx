@@ -8,9 +8,9 @@ import Why from "@/components/blocks/why";
 import { Link } from "@/i18n/navigation";
 
 export const metadata: Metadata = {
-  title: "CoreLink Cable | Built for Every Critical Connection",
+  title: "CoreLinkCable | Built for Every Critical Connection",
   description:
-    "CoreLink Cable delivers optical fiber, cable, assemblies, connectivity, optical components, and copper systems for critical network infrastructure.",
+    "CoreLinkCable delivers optical fiber, cable, assemblies, connectivity, optical components, and copper systems for critical network infrastructure.",
 };
 
 const differentiators = [
