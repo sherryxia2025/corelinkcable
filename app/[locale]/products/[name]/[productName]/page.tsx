@@ -85,6 +85,7 @@ export default async function ProductDetailPage({
     notFound();
   }
 
+  const category = product.category;
   const title = product.title || product.name;
   const detail = parseProductDetailMetadata(product.metadata);
   const images = Array.from(
@@ -122,15 +123,13 @@ export default async function ProductDetailPage({
       <main>
         <SubHero
           title="Product Details"
-          bgImage={
-            product.category.bannerUrl || "/images/corelink-network-rack.jpg"
-          }
+          bgImage={category.bannerUrl || "/images/corelink-network-rack.jpg"}
           breadcrumbs={[
             { label: "Home", href: "/" },
             { label: "Products", href: "/products" },
             {
-              label: product.category.title,
-              href: `/products/${encodeURIComponent(product.category.name)}`,
+              label: category.title,
+              href: `/products/${encodeURIComponent(category.name)}`,
             },
             { label: title },
           ]}
@@ -143,7 +142,7 @@ export default async function ProductDetailPage({
 
               <div className="lg:sticky lg:top-32">
                 <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                  {product.category.title}
+                  {category.title}
                 </p>
                 <h1 className="mt-4 text-balance text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-4xl lg:text-5xl">
                   {title}
@@ -386,11 +385,11 @@ export default async function ProductDetailPage({
                     Related products
                   </p>
                   <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl">
-                    More from {product.category.title}
+                    More from {category.title}
                   </h2>
                 </div>
                 <Link
-                  href={`/products/${encodeURIComponent(product.category.name)}`}
+                  href={`/products/${encodeURIComponent(category.name)}`}
                   className="text-sm font-bold text-[#6654ef] hover:text-[#4937d7]"
                 >
                   VIEW ALL PRODUCTS&nbsp;&nbsp;→
@@ -402,7 +401,7 @@ export default async function ProductDetailPage({
                   <ProductCard
                     key={relatedProduct.uuid}
                     product={relatedProduct}
-                    href={`/products/${encodeURIComponent(product.category.name)}/${encodeURIComponent(relatedProduct.name)}`}
+                    href={`/products/${encodeURIComponent(category.name)}/${encodeURIComponent(relatedProduct.name)}`}
                   />
                 ))}
               </div>
