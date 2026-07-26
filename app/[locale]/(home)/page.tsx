@@ -93,9 +93,8 @@ export default async function HomePage() {
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-4">
               {categories.map((category) => (
-                <Link
+                <article
                   key={category.uuid}
-                  href={`/products/${category.name}`}
                   className="group relative min-h-[390px] overflow-hidden rounded-md bg-[#080b1b] md:min-h-[460px]"
                 >
                   {category.coverUrl ? (
@@ -108,7 +107,7 @@ export default async function HomePage() {
                     />
                   ) : null}
                   <div
-                    className="absolute inset-0 bg-gradient-to-t from-[#050714] via-[#050714]/20 to-transparent"
+                    className="absolute inset-0 bg-gradient-to-t from-[#050714] via-[#050714]/25 to-transparent transition-colors duration-500 group-hover:from-[#050714] group-hover:via-[#050714]/45"
                     aria-hidden
                   />
                   <div className="absolute inset-x-0 bottom-0 p-6 text-white">
@@ -116,11 +115,15 @@ export default async function HomePage() {
                       {category.title}
                     </h3>
                     <div className="mt-4 h-px bg-white/25" />
-                    <span className="mt-4 inline-flex text-sm font-bold text-white/80 transition-colors group-hover:text-[#a99fff]">
-                      View products&nbsp;&nbsp;→
-                    </span>
+                    {category.description ? (
+                      <div className="mt-4 max-h-32 overflow-hidden transition-[max-height] duration-500 md:max-h-0 md:group-hover:max-h-40">
+                        <p className="translate-y-0 text-sm leading-6 text-white/75 opacity-100 transition-all duration-500 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
+                          {category.description}
+                        </p>
+                      </div>
+                    ) : null}
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
           </div>
