@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="title description">
+  <title id="title">CoreLink Cable</title>
+  <desc id="description">Purple circular circuit symbol</desc>
+  <defs>
+    <linearGradient id="corelink-purple" x1="16" y1="16" x2="112" y2="112" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#9b6cf2"/>
+      <stop offset="1" stop-color="#6844d9"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="62" fill="url(#corelink-purple)"/>
+  <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="5">
+    <path d="M18 64h92"/>
+    <path d="M36 34h8l21 21h45"/>
+    <path d="M73 34h5l15 15h17"/>
+    <path d="M36 94h8l21-21h45"/>
+    <path d="M73 94h5l15-15h17"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="18" cy="64" r="7"/>
+    <circle cx="36" cy="34" r="7"/>
+    <circle cx="73" cy="34" r="7"/>
+    <circle cx="36" cy="94" r="7"/>
+    <circle cx="73" cy="94" r="7"/>
+  </g>
+</svg>

@@ -25,8 +25,11 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
     "Optical fiber, cable, connectivity, optical components, and copper systems for critical network infrastructure.",
   icons: {
-    icon: [{ url: "/corelink-favicon.jpg", type: "image/jpeg" }],
-    shortcut: ["/corelink-favicon.jpg"],
+    icon: [
+      { url: "/corelink-icon.svg", type: "image/svg+xml" },
+      { url: "/corelink-favicon.jpg", type: "image/jpeg" },
+    ],
+    shortcut: ["/corelink-icon.svg"],
     apple: [{ url: "/corelink-favicon.jpg", type: "image/jpeg" }],
   },
   openGraph: {

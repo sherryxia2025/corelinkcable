@@ -5,18 +5,21 @@ interface CoreLinkBrandProps {
   compact?: boolean;
 }
 
-export function CoreLinkBrand({ compact = false }: CoreLinkBrandProps) {
+export function CoreLinkBrand({
+  inverted = false,
+  compact = false,
+}: CoreLinkBrandProps) {
   return (
     <span
-      className={`inline-flex shrink-0 items-center overflow-hidden bg-white ${
+      className={`inline-flex shrink-0 items-center ${
         compact ? "h-9 w-[145px]" : "h-12 w-[193px]"
       }`}
     >
       <Image
-        src="/corelink-logo.jpg"
+        src={inverted ? "/corelink-logo-inverted.svg" : "/corelink-logo.svg"}
         alt="CoreLink Cable — Connecting the Future"
-        width={3332}
-        height={829}
+        width={920}
+        height={230}
         sizes={compact ? "145px" : "193px"}
         className="h-full w-full object-contain"
       />
