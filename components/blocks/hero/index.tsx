@@ -41,7 +41,7 @@ const defaultItems: HeroItem[] = [
     buttonHref: "/products",
   },
   {
-    background: "/images/corelink-network-rack.jpg",
+    background: "/images/corelink-hero-fiber-assembly.jpg",
     title: "Fiber Optic Assembly",
     description:
       "High-Density Cabling, High-Speed Transmission, Reliable Connection",
