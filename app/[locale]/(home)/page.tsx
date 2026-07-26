@@ -221,10 +221,7 @@ export default function HomePage() {
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/70">
-                  Connect with CoreLink
-                </p>
-                <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl md:text-5xl">
+                <h2 className="text-balance text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Bring us the network you are building.
                 </h2>
                 <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">

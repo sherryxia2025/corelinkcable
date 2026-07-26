@@ -55,7 +55,7 @@ export const SubHero = ({
         className="absolute inset-0 opacity-10"
         style={{
           backgroundImage:
-            "radial-gradient(circle at 20% 50%, rgba(234, 147, 32, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(234, 147, 32, 0.2) 0%, transparent 50%)",
+            "radial-gradient(circle at 20% 50%, rgba(119, 101, 255, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(104, 68, 217, 0.2) 0%, transparent 50%)",
         }}
       />
 
@@ -90,7 +90,7 @@ export const SubHero = ({
                         {item.href ? (
                           <BreadcrumbLink
                             asChild
-                            className="text-white hover:text-[#EA9320] transition-colors text-sm sm:text-base"
+                            className="text-white hover:text-[#7765ff] transition-colors text-sm sm:text-base"
                           >
                             <Link href={item.href}>{item.label}</Link>
                           </BreadcrumbLink>
@@ -100,7 +100,7 @@ export const SubHero = ({
                           </span>
                         )}
                       </BreadcrumbItem>
-                      <BreadcrumbSeparator className="text-[#EA9320] mx-1 sm:mx-2">
+                      <BreadcrumbSeparator className="text-[#7765ff] mx-1 sm:mx-2">
                         &gt;
                       </BreadcrumbSeparator>
                     </Fragment>
