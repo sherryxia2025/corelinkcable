@@ -58,7 +58,7 @@ const capabilities = [
 ];
 
 const aboutFeatures = [
-  "Fiber, cable, assemblies, and cable management expertise",
+  "Fiber, cable, connectivity for the high-speed data transmission.",
   "Product choices aligned to real application conditions",
   "Responsive support from specification through delivery",
 ];
@@ -155,9 +155,9 @@ export default function HomePage() {
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-7 text-[#666] md:text-lg">
                   CoreLink Cable makes the physical layer easier to specify and
-                  safer to deliver. We bring fiber, cable, assemblies, and cable
-                  management together around one goal: dependable infrastructure
-                  ready for the network you are building.
+                  safer to deliver. We bring fiber, cable, assemblies, and
+                  connectivity together around one goal: dependable
+                  infrastructure that is ready for the network you are building.
                 </p>
                 <div className="mt-7 space-y-4">
                   {aboutFeatures.map((feature) => (
