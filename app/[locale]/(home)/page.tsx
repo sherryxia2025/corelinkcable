@@ -179,8 +179,8 @@ export default function HomePage() {
 
               <div className="relative min-h-[330px] overflow-hidden rounded-md sm:min-h-[440px]">
                 <Image
-                  src="/images/corelink-fiber-closeup.jpg"
-                  alt="Illuminated optical fibers"
+                  src="/images/corelink-home-about.jpg"
+                  alt="Optical fiber connecting digital infrastructure"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
