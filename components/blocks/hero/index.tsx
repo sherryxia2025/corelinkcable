@@ -42,11 +42,11 @@ const defaultItems: HeroItem[] = [
   },
   {
     background: "/images/corelink-network-rack.jpg",
-    title: "One Physical Layer. Every Environment.",
+    title: "Fiber Optic Assembly",
     description:
-      "A coordinated portfolio for data centers, telecom, industrial systems, energy, and smart infrastructure.",
-    buttonText: "START A PROJECT",
-    buttonHref: "/contact",
+      "High-Density Cabling, High-Speed Transmission, Reliable Connection",
+    buttonText: "VIEW ASSEMBLIES",
+    buttonHref: "/products/fiber-cable-assemblies",
   },
 ];
 
