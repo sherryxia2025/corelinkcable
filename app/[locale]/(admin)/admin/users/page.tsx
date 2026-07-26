@@ -1,11 +1,20 @@
 "use client";
 
-import { Filter, Loader2, Search, Trash2 } from "lucide-react";
+import { Filter, Loader2, Search, Trash2, UserPlus } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -28,6 +37,7 @@ interface User {
   email: string;
   emailVerified: boolean;
   image?: string;
+  role: string;
   createdAt: string;
   updatedAt: string;
   lastLogin?: string;
@@ -55,6 +65,11 @@ interface UsersResponse {
   };
 }
 
+interface CreateUserResponse {
+  success: boolean;
+  error?: string;
+}
+
 export default function UsersPage() {
   const t = useTranslations("admin.users");
   const [users, setUsers] = useState<User[]>([]);
@@ -63,6 +78,14 @@ export default function UsersPage() {
   const [roleFilter, setRoleFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [isCreating, setIsCreating] = useState(false);
+  const [createError, setCreateError] = useState("");
+  const [newUser, setNewUser] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 10,
@@ -108,8 +131,11 @@ export default function UsersPage() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    setCurrentPage(1);
-    fetchUsers();
+    if (currentPage === 1) {
+      fetchUsers();
+    } else {
+      setCurrentPage(1);
+    }
   };
 
   const handleDeleteUser = async (userId: string) => {
@@ -129,6 +155,46 @@ export default function UsersPage() {
     } catch (error) {
       console.error("Failed to delete user:", error);
       alert(t("messages.deleteError"));
+    }
+  };
+
+  const handleCreateDialogChange = (open: boolean) => {
+    setCreateDialogOpen(open);
+    if (!open) {
+      setCreateError("");
+      setNewUser({ name: "", email: "", password: "" });
+    }
+  };
+
+  const handleCreateUser = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setCreateError("");
+    setIsCreating(true);
+
+    try {
+      const response = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      });
+      const data = (await response.json()) as CreateUserResponse;
+
+      if (!response.ok || !data.success) {
+        setCreateError(data.error || t("messages.createError"));
+        return;
+      }
+
+      handleCreateDialogChange(false);
+      if (currentPage === 1) {
+        await fetchUsers();
+      } else {
+        setCurrentPage(1);
+      }
+    } catch (error) {
+      console.error("Failed to create user:", error);
+      setCreateError(t("messages.createError"));
+    } finally {
+      setIsCreating(false);
     }
   };
 
@@ -156,29 +222,15 @@ export default function UsersPage() {
   };
 
   const getProviderName = (providerId: string) => {
-    switch (providerId.toLowerCase()) {
-      case "google":
-        return "Google";
-      case "github":
-        return "GitHub";
-      default:
-        return providerId;
-    }
+    return providerId.toLowerCase() === "credential"
+      ? t("table.emailPassword")
+      : t("table.disabledLogin");
   };
 
   const getProviderColor = (providerId: string) => {
-    switch (providerId.toLowerCase()) {
-      case "google":
-        return "bg-blue-500/20 text-blue-600 dark:text-blue-400 border-blue-500/30";
-      case "github":
-        return "bg-purple-500/20 text-purple-600 dark:text-purple-400 border-purple-500/30";
-      case "discord":
-        return "bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 border-indigo-500/30";
-      case "email":
-        return "bg-green-500/20 text-green-600 dark:text-green-400 border-green-500/30";
-      default:
-        return "bg-gray-500/20 text-gray-600 dark:text-gray-400 border-gray-500/30";
-    }
+    return providerId.toLowerCase() === "credential"
+      ? "border-[#7765ff]/30 bg-[#7765ff]/10 text-[#6554eb] dark:text-[#a99fff]"
+      : "border-gray-500/30 bg-gray-500/10 text-gray-600 dark:text-gray-400";
   };
 
   return (
@@ -189,7 +241,130 @@ export default function UsersPage() {
           <h1 className="text-4xl font-bold tracking-tighter">{t("title")}</h1>
           <p className="text-muted-foreground mt-2">{t("description")}</p>
         </div>
+        <Button
+          type="button"
+          onClick={() => setCreateDialogOpen(true)}
+          className="bg-[#7765ff] text-white hover:bg-[#6554eb]"
+        >
+          <UserPlus className="size-4" />
+          {t("addUser")}
+        </Button>
       </div>
+
+      <Dialog open={createDialogOpen} onOpenChange={handleCreateDialogChange}>
+        <DialogContent className="sm:max-w-[480px]">
+          <form onSubmit={handleCreateUser}>
+            <DialogHeader>
+              <DialogTitle>{t("create.title")}</DialogTitle>
+              <DialogDescription>{t("create.description")}</DialogDescription>
+            </DialogHeader>
+
+            <div className="mt-6 space-y-5">
+              <div className="space-y-2">
+                <Label htmlFor="new-user-name">{t("create.name")}</Label>
+                <Input
+                  id="new-user-name"
+                  autoComplete="name"
+                  required
+                  minLength={2}
+                  maxLength={100}
+                  value={newUser.name}
+                  onChange={(event) =>
+                    setNewUser((current) => ({
+                      ...current,
+                      name: event.target.value,
+                    }))
+                  }
+                  placeholder={t("create.namePlaceholder")}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="new-user-email">{t("create.email")}</Label>
+                <Input
+                  id="new-user-email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  maxLength={255}
+                  value={newUser.email}
+                  onChange={(event) =>
+                    setNewUser((current) => ({
+                      ...current,
+                      email: event.target.value,
+                    }))
+                  }
+                  placeholder="name@company.com"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="new-user-password">
+                  {t("create.password")}
+                </Label>
+                <Input
+                  id="new-user-password"
+                  type="password"
+                  autoComplete="new-password"
+                  required
+                  minLength={12}
+                  maxLength={128}
+                  value={newUser.password}
+                  onChange={(event) =>
+                    setNewUser((current) => ({
+                      ...current,
+                      password: event.target.value,
+                    }))
+                  }
+                  placeholder={t("create.passwordPlaceholder")}
+                />
+                <p className="text-xs leading-5 text-muted-foreground">
+                  {t("create.passwordHint")}
+                </p>
+              </div>
+
+              <div className="rounded-md border border-[#7765ff]/20 bg-[#7765ff]/5 px-4 py-3 text-sm text-muted-foreground">
+                {t("create.accessNote")}
+              </div>
+
+              {createError ? (
+                <p
+                  role="alert"
+                  className="rounded-md border border-destructive/20 bg-destructive/5 px-4 py-3 text-sm text-destructive"
+                >
+                  {createError}
+                </p>
+              ) : null}
+            </div>
+
+            <DialogFooter className="mt-7">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => handleCreateDialogChange(false)}
+                disabled={isCreating}
+              >
+                {t("create.cancel")}
+              </Button>
+              <Button
+                type="submit"
+                disabled={isCreating}
+                className="bg-[#7765ff] text-white hover:bg-[#6554eb]"
+              >
+                {isCreating ? (
+                  <>
+                    <Loader2 className="size-4 animate-spin" />
+                    {t("create.creating")}
+                  </>
+                ) : (
+                  t("create.submit")
+                )}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-card border rounded-lg p-6">
@@ -257,10 +432,9 @@ export default function UsersPage() {
                   <SelectItem value="all">
                     {t("search.allProviders")}
                   </SelectItem>
-                  <SelectItem value="google">Google</SelectItem>
-                  <SelectItem value="github">GitHub</SelectItem>
-                  <SelectItem value="discord">Discord</SelectItem>
-                  <SelectItem value="email">Email</SelectItem>
+                  <SelectItem value="admin">
+                    {t("search.administrators")}
+                  </SelectItem>
                 </SelectContent>
               </Select>
               <Select

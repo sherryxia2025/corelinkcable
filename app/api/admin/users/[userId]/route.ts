@@ -1,8 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@/prisma/generated/prisma";
-
-const prisma = new PrismaClient();
+import { auth } from "@/lib/auth";
+import prisma from "@/prisma";
 
 export async function GET(
   _request: NextRequest,
@@ -88,7 +87,7 @@ export async function PATCH(
     const updateData = await request.json();
 
     // Validate update data
-    const allowedFields = ["name", "email", "emailVerified", "githubId"];
+    const allowedFields = ["name", "email", "emailVerified", "role"];
     const filteredData = Object.fromEntries(
       Object.entries(updateData).filter(([key]) => allowedFields.includes(key)),
     );
@@ -119,11 +118,21 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  _request: NextRequest,
+  request: NextRequest,
   { params }: { params: Promise<{ userId: string }> },
 ) {
   try {
     const { userId } = await params;
+    const session = await auth.api.getSession({
+      headers: request.headers,
+    });
+
+    if (session?.user.id === userId) {
+      return NextResponse.json(
+        { success: false, error: "You cannot delete your own account" },
+        { status: 400 },
+      );
+    }
 
     // Check if user exists
     const user = await prisma.user.findUnique({

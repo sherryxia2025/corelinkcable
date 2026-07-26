@@ -9,10 +9,6 @@ interface AuthState {
   isAuthenticated: boolean;
 
   // Auth actions
-  signIn: (
-    provider: string,
-    options?: { callbackURL?: string },
-  ) => Promise<void>;
   signOut: () => Promise<void>;
   initialize: () => Promise<void>;
 }
@@ -22,25 +18,6 @@ export const useAuth = create<AuthState>()(
     (set) => ({
       user: null,
       isAuthenticated: false,
-
-      signIn: async (provider: string, options?: { callbackURL?: string }) => {
-        const { callbackURL } = options || {};
-        try {
-          await authClient.signIn.social({
-            provider,
-            callbackURL,
-          });
-
-          const session = await authClient.getSession();
-          set({
-            user: session?.data?.user || null,
-            isAuthenticated: true,
-          });
-        } catch (error) {
-          console.error("Sign in error:", error);
-          throw error;
-        }
-      },
 
       signOut: async () => {
         try {
@@ -62,10 +39,6 @@ export const useAuth = create<AuthState>()(
           user,
           isAuthenticated: true,
         });
-
-        if (!user) {
-          authClient.oneTap();
-        }
       },
     }),
     {

@@ -31,6 +31,7 @@
     "passwordPlaceholder": "Enter your password",
     "signingIn": "Signing in...",
     "invalidEmailOrPassword": "Invalid email or password",
+    "signInWithEmail": "Sign in with email",
     "noAuthenticationProvidersConfigured": "No authentication providers configured"
   },
   "user": {
@@ -191,7 +192,22 @@
     },
     "users": {
       "title": "User Management",
-      "description": "Manage user accounts and permissions",
+      "description": "Manage administrator accounts and secure access",
+      "addUser": "Add User",
+      "create": {
+        "title": "Add Administrator",
+        "description": "Create a new email and password account for the administration portal.",
+        "name": "Name",
+        "namePlaceholder": "Administrator name",
+        "email": "Email",
+        "password": "Initial Password",
+        "passwordPlaceholder": "At least 12 characters",
+        "passwordHint": "Use at least 12 characters. Password changes will be added later.",
+        "accessNote": "This account will receive administrator access.",
+        "cancel": "Cancel",
+        "submit": "Create Account",
+        "creating": "Creating..."
+      },
       "stats": {
         "totalUsers": "Total Users",
         "verifiedUsers": "Verified Users",
@@ -200,7 +216,8 @@
       },
       "search": {
         "placeholder": "Search users...",
-        "allProviders": "All Providers",
+        "allProviders": "All Roles",
+        "administrators": "Administrators",
         "allStatus": "All Status",
         "verified": "Verified",
         "pending": "Pending",
@@ -208,7 +225,9 @@
       },
       "table": {
         "user": "User",
-        "provider": "Provider",
+        "provider": "Login Method",
+        "emailPassword": "Email & Password",
+        "disabledLogin": "Disabled",
         "githubId": "GitHub ID",
         "status": "Status",
         "lastLogin": "Last Login",
@@ -232,7 +251,8 @@
         "loading": "Loading...",
         "deleteConfirm": "Are you sure you want to delete this user?",
         "deleteSuccess": "User deleted successfully",
-        "deleteError": "Failed to delete user"
+        "deleteError": "Failed to delete user",
+        "createError": "Failed to create user"
       }
     },
     "orders": {
