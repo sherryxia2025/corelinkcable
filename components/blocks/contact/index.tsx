@@ -111,7 +111,7 @@ export const Contact = ({ productName }: { productName?: string }) => {
             className="bg-[#f8f8f8] rounded-lg p-6 hover:shadow-md transition-shadow cursor-pointer"
           >
             <div className="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left">
-              <div className="w-16 h-16 rounded-sm bg-[#f7931e] flex items-center justify-center mb-4 md:mb-0 md:mr-4 flex-shrink-0">
+              <div className="w-16 h-16 rounded-sm bg-[#7765ff] flex items-center justify-center mb-4 md:mb-0 md:mr-4 flex-shrink-0">
                 <Phone className="w-8 h-8 text-white" />
               </div>
               <div className="flex-1 min-w-0">
@@ -284,7 +284,7 @@ export const Contact = ({ productName }: { productName?: string }) => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-[#f7931e] hover:bg-[#f7931e]/90 text-white px-8 py-2 rounded-md"
+                className="bg-[#7765ff] hover:bg-[#6554eb] text-white px-8 py-2 rounded-md"
               >
                 {isSubmitting
                   ? contactConfig.button.submitting
