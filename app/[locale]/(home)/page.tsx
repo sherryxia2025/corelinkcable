@@ -37,23 +37,23 @@ const differentiators = [
 const capabilities = [
   [
     "01",
-    "Optical + cable",
-    "A coordinated portfolio spanning fiber, cable, assemblies, and cable management.",
+    "Innovation",
+    "We explore cutting-edge fiber technologies to deliver future-proof solutions, keeping you ahead amid the fast-evolving AI era.",
   ],
   [
     "02",
-    "Project configured",
-    "Construction, lengths, termination, labeling, and packaging aligned to the job.",
+    "Quality",
+    "We uphold stringent quality control standards to guarantee outstanding performance, reliability and durability across all products.",
   ],
   [
     "03",
-    "Built to scale",
-    "Products selected around density, reach, growth, and maintainability.",
+    "Customer First",
+    "We focus on identifying distinctive customer requirements, providing customized solutions and prompt technical support.",
   ],
   [
     "04",
-    "Delivery minded",
-    "Practical coordination from product selection through deployment.",
+    "Operational Excellence",
+    "We secure efficient delivery, cost competitiveness and top-tier operational reliability.",
   ],
 ];
 
