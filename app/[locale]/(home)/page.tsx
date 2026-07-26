@@ -79,15 +79,12 @@ export default async function HomePage() {
         <section className="bg-white py-16 md:py-20 lg:py-24">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                Product portfolio
-              </p>
-              <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
+              <h2 className="text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
                 From a single fiber to a complete connection system.
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#666] md:text-lg">
-                A focused portfolio covering optical fiber, transmission cable,
-                terminated assemblies, and cable management.
+                A focused portfolio spanning core optical media, transmission
+                cable, assemblies, connectivity, optical components.
               </p>
             </div>
 
