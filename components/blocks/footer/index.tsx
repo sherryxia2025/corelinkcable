@@ -29,10 +29,13 @@ const defaultConfig = {
     {
       title: "PRODUCT LINES",
       links: [
-        { text: "Optical Fibers", url: "/products" },
-        { text: "Fiber Optic Cables", url: "/products" },
-        { text: "Cable Assemblies", url: "/products" },
-        { text: "Connectivity", url: "/products" },
+        { text: "Optical Fiber", url: "/products/optical-fiber" },
+        { text: "Fiber Cable", url: "/products/fiber-cable" },
+        {
+          text: "Fiber Cable Assemblies",
+          url: "/products/fiber-cable-assemblies",
+        },
+        { text: "Cable Tie", url: "/products/cable-tie" },
       ],
     },
     {
@@ -75,7 +78,7 @@ export const Footer = ({
                       key={`${link.text}-${link.url}`}
                       className="hover:text-white font-medium"
                     >
-                      <a href={link.url}>{link.text}</a>
+                      <Link href={link.url}>{link.text}</Link>
                     </li>
                   ))}
                 </ul>

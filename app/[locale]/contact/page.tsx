@@ -16,7 +16,7 @@ export default function ContactPage() {
       <Header />
       <SubHero
         title="Contact"
-        bgImage="/images/contact-hero.jpg"
+        bgImage="/images/corelink-contact-banner.jpg"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
       />
       <Contact />

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface WhyProps {
   title?: string;
   description?: string;
@@ -64,16 +66,19 @@ export default function Why(props: WhyProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-8 md:mt-12 lg:mt-15 gap-6 md:gap-8 lg:gap-10 w-full">
             {items.map((item, index) => (
               <figure
-                key={index}
+                key={item.title}
                 className={`flex flex-col rounded-lg overflow-hidden w-full h-auto bg-[#F7F7F7] dark:bg-[#2A2A2A] ${index === 2 ? "md:col-span-2 lg:col-span-1" : ""}`}
               >
                 {item.cover && (
-                  <img
-                    draggable={false}
-                    src={item.cover}
-                    alt={item.title}
-                    className="w-full h-48 md:h-56 lg:h-64 object-cover"
-                  />
+                  <div className="relative h-48 w-full md:h-56 lg:h-64">
+                    <Image
+                      src={item.cover}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
                 )}
                 <figcaption className="flex-1 p-4 md:p-6 space-y-3 md:space-y-4">
                   <h2 className="text-[#3D3D3D] dark:text-[#E5E5E5] text-lg md:text-xl font-extrabold line-clamp-1">
