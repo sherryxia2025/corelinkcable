@@ -15,7 +15,7 @@ interface FooterProps {
 }
 
 const defaultConfig = {
-  copyright: "© 2026 CoreLink Cable. All rights reserved.",
+  copyright: "© 2026 CoreLinkCable. All rights reserved.",
   menuItems: [
     {
       title: "EXPLORE",

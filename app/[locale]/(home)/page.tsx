@@ -147,14 +147,11 @@ export default function HomePage() {
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                  About CoreLink
-                </p>
-                <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
+                <h2 className="text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
                   Three words. One connected purpose.
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-7 text-[#666] md:text-lg">
-                  CoreLink Cable makes the physical layer easier to specify and
+                  CoreLinkCable makes the physical layer easier to specify and
                   safer to deliver. We bring fiber, cable, assemblies, and
                   connectivity together around one goal: dependable
                   infrastructure that is ready for the network you are building.
