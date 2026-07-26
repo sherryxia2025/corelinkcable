@@ -25,7 +25,12 @@
     "signInWith": "Sign in with {provider}",
     "signInError": "Sign in failed",
     "signOutError": "Sign out failed",
-    "signInDescription": "Please select a login method",
+    "signInDescription": "Sign in to the CoreLinkCable administration portal.",
+    "email": "Email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "signingIn": "Signing in...",
+    "invalidEmailOrPassword": "Invalid email or password",
     "noAuthenticationProvidersConfigured": "No authentication providers configured"
   },
   "user": {

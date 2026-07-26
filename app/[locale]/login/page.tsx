@@ -1,73 +1,67 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { LockKeyhole, Mail } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
 import { useTranslations } from "next-intl";
+import { type FormEvent, useEffect, useState } from "react";
+import { CoreLinkBrand } from "@/components/corelink-brand";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
-import { useAuth } from "@/store/auth";
+import { authClient } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/store/auth";
 
 export default function LoginPage() {
   const auth = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
   const t = useTranslations("auth");
-  const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  // Get callback URL from query params
-  const callbackURL = searchParams.get("callbackURL") || undefined;
+  const requestedCallback = searchParams.get("callbackURL");
+  const callbackURL =
+    requestedCallback?.startsWith("/") && !requestedCallback.startsWith("//")
+      ? requestedCallback
+      : "/admin";
 
-  // Redirect if already authenticated
   useEffect(() => {
     if (auth.isAuthenticated && auth.user) {
-      const redirectTo = callbackURL || "/";
-      router.push(redirectTo);
+      router.replace(callbackURL);
     }
   }, [auth.isAuthenticated, auth.user, callbackURL, router]);
 
-  const handleSignIn = useCallback(
-    async (provider: string) => {
-      setLoadingProvider(provider);
-      try {
-        await auth.signIn(provider, {
-          callbackURL: callbackURL || "/",
-        });
-      } catch (error) {
-        console.error("Sign in error:", error);
-        setLoadingProvider(null);
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setErrorMessage("");
+    setIsSubmitting(true);
+
+    try {
+      const result = await authClient.signIn.email({
+        email: email.trim(),
+        password,
+        rememberMe: true,
+      });
+
+      if (result.error) {
+        setErrorMessage(result.error.message || t("invalidEmailOrPassword"));
+        return;
       }
-    },
-    [auth, callbackURL],
-  );
 
-  const providers = useMemo(() => {
-    const items = [];
-
-    if (process.env.NEXT_PUBLIC_GITHUB_CLIENT_ID) {
-      items.push({
-        id: "github",
-        name: "GitHub",
-        icon: <FaGithub className="size-4" />,
-        onClick: () => handleSignIn("github"),
-      });
+      await auth.initialize();
+      router.replace(callbackURL);
+      router.refresh();
+    } catch {
+      setErrorMessage(t("signInError"));
+    } finally {
+      setIsSubmitting(false);
     }
+  }
 
-    if (process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
-      items.push({
-        id: "google",
-        name: "Google",
-        icon: <FcGoogle className="size-4" />,
-        onClick: () => handleSignIn("google"),
-      });
-    }
-
-    return items;
-  }, [handleSignIn]);
-
-  // Show loading state if checking authentication
   if (auth.isAuthenticated && auth.user) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -83,86 +77,85 @@ export default function LoginPage() {
       )}
     >
       <div className="flex items-center justify-center min-h-screen px-4 py-8">
-        <div className="w-full max-w-[560px]">
-          <div className="rounded-3xl bg-white dark:bg-[#212121] shadow-xl border border-black/5 dark:border-white/10">
+        <div className="w-full max-w-[480px]">
+          <div className="overflow-hidden rounded-2xl border border-black/8 bg-white shadow-[0_24px_80px_-28px_rgba(31,24,72,0.35)] dark:border-white/10 dark:bg-[#212121]">
+            <div className="h-1.5 bg-gradient-to-r from-[#6048df] via-[#7765ff] to-[#9c75ff]" />
             <div className="p-8 sm:p-10">
-              {/* App Icon */}
               <div className="flex justify-center">
-                <div className="size-14 rounded-2xl bg-gradient-to-b from-[#915EFF] to-[#6E43F2] shadow-sm flex items-center justify-center">
-                  {/* Simple spark icon shape */}
-                  <div className="size-7 rounded-full bg-white/90" />
-                </div>
+                <CoreLinkBrand />
               </div>
 
-              {/* Title */}
-              <h1 className="text-center text-3xl sm:text-4xl font-bold text-[#151417] dark:text-white mt-6">
+              <h1 className="mt-8 text-center text-3xl font-bold tracking-[-0.03em] text-[#151417] dark:text-white sm:text-4xl">
                 {t("signIn")}
               </h1>
               <p className="text-center text-[#666666] dark:text-[#A0A0A0] mt-2">
                 {t("signInDescription")}
               </p>
 
-              {/* Providers */}
-              <div className="mt-8">
-                {providers.length === 0 ? (
-                  <p className="text-sm text-center text-[#666666] dark:text-[#A0A0A0]">
-                    {t("noAuthenticationProvidersConfigured")}
-                  </p>
-                ) : (
-                  <>
-                    {/* Providers in one row */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      {/* Google */}
-                      {providers.find((p) => p.id === "google") && (
-                        <Button
-                          onClick={providers.find((p) => p.id === "google")!.onClick}
-                          disabled={loadingProvider === "google"}
-                          className={cn(
-                            "w-full h-11 rounded-xl text-white font-medium",
-                            "bg-gradient-to-r from-[#7C3AED] to-[#6D28D9] hover:from-[#7C3AED]/90 hover:to-[#6D28D9]/90",
-                            "dark:shadow-[0_6px_20px_-6px_rgba(124,58,237,0.6)]",
-                          )}
-                        >
-                          {loadingProvider === "google" ? (
-                            <Spinner className="text-white" />
-                          ) : (
-                            <>
-                              <FcGoogle className="size-5 bg-white rounded-sm" />
-                              <span className="ml-2">With Google</span>
-                            </>
-                          )}
-                        </Button>
-                      )}
-                      {/* GitHub */}
-                      {providers.find((p) => p.id === "github") && (
-                        <Button
-                          onClick={providers.find((p) => p.id === "github")!.onClick}
-                          disabled={loadingProvider === "github"}
-                          variant="outline"
-                          className="h-11 rounded-xl w-full dark:bg-[#2A2A2A] dark:text-[#E5E5E5] dark:border-[#333] hover:bg-black/5 dark:hover:bg-white/10"
-                        >
-                          {loadingProvider === "github" ? (
-                            <Spinner />
-                          ) : (
-                            <>
-                              <FaGithub className="size-5" />
-                              <span className="ml-2">With GitHub</span>
-                            </>
-                          )}
-                        </Button>
-                      )}
-                    </div>
-                  </>
-                )}
-              </div>
-            </div>
+              <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+                <div className="space-y-2">
+                  <Label htmlFor="email">{t("email")}</Label>
+                  <div className="relative">
+                    <Mail className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#888b95]" />
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      required
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                      placeholder="admin@corelinkcable.com"
+                      className="h-12 rounded-lg border-black/10 bg-[#fafafa] pl-10 focus-visible:border-[#7765ff] focus-visible:ring-[#7765ff]/20 dark:border-white/10 dark:bg-white/5"
+                    />
+                  </div>
+                </div>
 
-            {/* Footer hint */}
-            <div className="px-8 sm:px-10 pb-8 sm:pb-10">
-              <p className="text-center text-xs text-[#888] dark:text-[#A0A0A0]">
-                {/* Keep hint minimal, no email/password for now */}
-                By continuing, you agree to our Terms and Privacy Policy.
-              </p>
+                <div className="space-y-2">
+                  <Label htmlFor="password">{t("password")}</Label>
+                  <div className="relative">
+                    <LockKeyhole className="pointer-events-none absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#888b95]" />
+                    <Input
+                      id="password"
+                      name="password"
+                      type="password"
+                      autoComplete="current-password"
+                      required
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                      placeholder={t("passwordPlaceholder")}
+                      className="h-12 rounded-lg border-black/10 bg-[#fafafa] pl-10 focus-visible:border-[#7765ff] focus-visible:ring-[#7765ff]/20 dark:border-white/10 dark:bg-white/5"
+                    />
+                  </div>
+                </div>
+
+                {errorMessage ? (
+                  <p
+                    role="alert"
+                    className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-300"
+                  >
+                    {errorMessage}
+                  </p>
+                ) : null}
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={cn(
+                    "h-12 w-full rounded-lg bg-[#7765ff] text-base font-semibold text-white",
+                    "hover:bg-[#6554eb] focus-visible:ring-[#7765ff]/30",
+                  )}
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Spinner className="text-white" />
+                      {t("signingIn")}
+                    </>
+                  ) : (
+                    t("signIn")
+                  )}
+                </Button>
+              </form>
             </div>
           </div>
         </div>
@@ -170,4 +163,3 @@ export default function LoginPage() {
     </article>
   );
 }
-
