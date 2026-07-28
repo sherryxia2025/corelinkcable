@@ -5,6 +5,7 @@ export interface ProductDetailMetadata {
   characteristicsTitle: string;
   characteristics: string[];
   specifications: Record<string, string>;
+  specificationsImageUrl: string;
 }
 
 export interface ProductDetailFormInput {
@@ -12,6 +13,7 @@ export interface ProductDetailFormInput {
   characteristicsTitle?: string;
   characteristics?: string;
   specifications?: string;
+  specificationsImageUrl?: string;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -83,6 +85,7 @@ export function parseProductDetailMetadata(
     characteristicsTitle: asString(source.characteristicsTitle),
     characteristics: asStringArray(source.characteristics),
     specifications: asStringRecord(source.specifications),
+    specificationsImageUrl: asString(source.specificationsImageUrl),
   };
 }
 
@@ -96,6 +99,7 @@ export function productDetailToFormData(
     characteristicsTitle: detail.characteristicsTitle,
     characteristics: detail.characteristics.join("\n"),
     specifications: JSON.stringify(detail.specifications),
+    specificationsImageUrl: detail.specificationsImageUrl,
   };
 }
 
@@ -108,6 +112,7 @@ export function buildProductDetailMetadata(
   const gallery = parseLines(input.galleryUrls);
   const characteristicsTitle = input.characteristicsTitle?.trim();
   const characteristics = parseLines(input.characteristics);
+  const specificationsImageUrl = input.specificationsImageUrl?.trim();
 
   if (gallery.length > 0) metadata.gallery = gallery;
   if (characteristicsTitle) {
@@ -118,6 +123,9 @@ export function buildProductDetailMetadata(
   }
   if (Object.keys(specifications).length > 0) {
     metadata.specifications = specifications;
+  }
+  if (specificationsImageUrl) {
+    metadata.specificationsImageUrl = specificationsImageUrl;
   }
 
   return metadata as Prisma.InputJsonObject;

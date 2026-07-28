@@ -1,5 +1,6 @@
 import { Check, FileText } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/blocks/footer";
 import { Header } from "@/components/blocks/header";
@@ -85,6 +86,9 @@ export default async function ProductDetailPage({
     ),
   );
   const specificationEntries = Object.entries(detail.specifications);
+  const specificationsImageUrl = isUsableImageUrl(detail.specificationsImageUrl)
+    ? detail.specificationsImageUrl
+    : "";
 
   return (
     <>
@@ -139,7 +143,7 @@ export default async function ProductDetailPage({
           </div>
         </section>
 
-        {specificationEntries.length > 0 ? (
+        {specificationEntries.length > 0 || specificationsImageUrl ? (
           <section
             id="specifications"
             className="scroll-mt-24 bg-white py-16 md:py-20 lg:py-24"
@@ -155,27 +159,42 @@ export default async function ProductDetailPage({
                   </h2>
                 </div>
 
-                <div className="mt-9 overflow-hidden rounded-md border border-black/10">
-                  <table className="w-full border-collapse text-left">
-                    <tbody>
-                      {specificationEntries.map(([label, value], index) => (
-                        <tr
-                          key={label}
-                          className={
-                            index % 2 === 0 ? "bg-[#f7f7f9]" : "bg-white"
-                          }
-                        >
-                          <th className="w-[42%] border-r border-black/10 px-5 py-4 text-sm font-bold text-[#30323a] md:px-7">
-                            {label}
-                          </th>
-                          <td className="px-5 py-4 text-sm leading-6 text-[#5e616a] md:px-7">
-                            {value}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
+                {specificationEntries.length > 0 ? (
+                  <div className="mt-9 overflow-hidden rounded-md border border-black/10">
+                    <table className="w-full border-collapse text-left">
+                      <tbody>
+                        {specificationEntries.map(([label, value], index) => (
+                          <tr
+                            key={label}
+                            className={
+                              index % 2 === 0 ? "bg-[#f7f7f9]" : "bg-white"
+                            }
+                          >
+                            <th className="w-[42%] border-r border-black/10 px-5 py-4 text-sm font-bold text-[#30323a] md:px-7">
+                              {label}
+                            </th>
+                            <td className="px-5 py-4 text-sm leading-6 text-[#5e616a] md:px-7">
+                              {value}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                ) : null}
+
+                {specificationsImageUrl ? (
+                  <div className="mt-9 overflow-hidden rounded-md border border-black/10 bg-white p-3 md:p-5">
+                    <Image
+                      src={specificationsImageUrl}
+                      alt={`${title} technical specifications`}
+                      width={1600}
+                      height={1200}
+                      sizes="(max-width: 1024px) 100vw, 1024px"
+                      className="h-auto w-full"
+                    />
+                  </div>
+                ) : null}
               </div>
             </div>
           </section>

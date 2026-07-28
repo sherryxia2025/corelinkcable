@@ -143,6 +143,13 @@ export default async function EditProductPage({
         tip: "Add each specification as a name and value pair.",
       },
       {
+        name: "specificationsImageUrl",
+        title: "Technical Specifications Image",
+        type: "image-url",
+        placeholder: "Upload one specifications image...",
+        tip: "Optional. Use one image for complex tables that cannot be entered as simple name and value pairs.",
+      },
+      {
         name: "sort",
         title: "Sort",
         type: "number",
@@ -198,6 +205,7 @@ export default async function EditProductPage({
           characteristicsTitle: data.get("characteristicsTitle") as string,
           characteristics: data.get("characteristics") as string,
           specifications: data.get("specifications") as string,
+          specificationsImageUrl: data.get("specificationsImageUrl") as string,
         });
 
         const product = {
