@@ -38,7 +38,7 @@ export default async function ProductsPage() {
       <main>
         <SubHero
           title="Products"
-          bgImage="/images/corelink-network-rack.jpg"
+          bgImage="/images/corelink-products-banner.jpg"
           breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
         />
 
