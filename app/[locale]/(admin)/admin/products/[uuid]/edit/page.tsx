@@ -120,18 +120,6 @@ export default async function EditProductPage({
         tip: "Upload optional candidate images. The cover image and these images form the thumbnail gallery.",
       },
       {
-        name: "model",
-        title: "Model",
-        type: "text",
-        placeholder: "G.657.A2",
-      },
-      {
-        name: "brand",
-        title: "Brand",
-        type: "text",
-        placeholder: "CoreLinkCable",
-      },
-      {
         name: "characteristics",
         title: "Key Characteristics",
         type: "textarea",
@@ -227,8 +215,6 @@ export default async function EditProductPage({
 
         const sort = sortStr ? Number.parseInt(sortStr, 10) : 0;
         const metadata = buildProductDetailMetadata({
-          model: data.get("model") as string,
-          brand: data.get("brand") as string,
           galleryUrls: data.get("galleryUrls") as string,
           characteristics: data.get("characteristics") as string,
           detailContent: data.get("detailContent") as string,

@@ -123,31 +123,6 @@ export default async function ProductDetailPage({
                   {title}
                 </h1>
 
-                {detail.model || detail.brand ? (
-                  <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-black/10 bg-black/10">
-                    {detail.model ? (
-                      <div className="bg-white p-5">
-                        <dt className="text-xs font-bold uppercase tracking-[0.18em] text-[#8a8d95]">
-                          Model
-                        </dt>
-                        <dd className="mt-2 font-bold text-[#11131b]">
-                          {detail.model}
-                        </dd>
-                      </div>
-                    ) : null}
-                    {detail.brand ? (
-                      <div className="bg-white p-5">
-                        <dt className="text-xs font-bold uppercase tracking-[0.18em] text-[#8a8d95]">
-                          Brand
-                        </dt>
-                        <dd className="mt-2 font-bold text-[#11131b]">
-                          {detail.brand}
-                        </dd>
-                      </div>
-                    ) : null}
-                  </dl>
-                ) : null}
-
                 {detail.characteristics.length > 0 ? (
                   <div className="mt-8">
                     <h2 className="text-lg font-extrabold text-[#11131b]">
