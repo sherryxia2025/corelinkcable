@@ -114,17 +114,6 @@ export default function AboutPage() {
                     unmatched professional technical support.
                   </p>
                 </div>
-
-                <div className="mt-8 grid grid-cols-3 gap-3 border-t border-black/10 pt-7">
-                  {["Core", "Link", "Cable"].map((word) => (
-                    <div key={word}>
-                      <p className="text-xl font-extrabold text-[#11131b]">
-                        {word}
-                      </p>
-                      <div className="mt-2 h-1 w-8 rounded-full bg-[#7765ff]" />
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
