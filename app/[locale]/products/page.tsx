@@ -42,18 +42,6 @@ export default async function ProductsPage() {
           breadcrumbs={[{ label: "Home", href: "/" }, { label: "Products" }]}
         />
 
-        <section className="pt-14 text-center md:pt-18 lg:pt-20">
-          <div className="container mx-auto px-4 md:px-6 lg:px-8">
-            <h2 className="mx-auto max-w-4xl text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
-              Four product families. One connected portfolio.
-            </h2>
-            <p className="mx-auto mt-5 max-w-3xl text-base text-[#666] sm:text-lg">
-              Select a category to view its product series and technical
-              options.
-            </p>
-          </div>
-        </section>
-
         <Products categories={transformedCategories} />
       </main>
       <Footer />
