@@ -143,33 +143,12 @@ export default async function EditProductPage({
         tip: "Add each specification as a name and value pair.",
       },
       {
-        name: "applications",
-        title: "Applications",
-        type: "textarea",
-        placeholder: "One application per line",
-        attributes: {
-          rows: 6,
-        },
-      },
-      {
-        name: "datasheetUrl",
-        title: "Datasheet URL",
-        type: "url",
-        placeholder: "https://...",
-      },
-      {
         name: "sort",
         title: "Sort",
         type: "number",
         placeholder: "0",
         tip: "Lower numbers appear first",
         value: (product.sort ?? 0).toString(),
-      },
-      {
-        name: "additionalMetadata",
-        title: "Additional Metadata",
-        type: "key-value",
-        placeholder: "Add optional key-value data",
       },
     ],
     submit: {
@@ -219,9 +198,6 @@ export default async function EditProductPage({
           characteristicsTitle: data.get("characteristicsTitle") as string,
           characteristics: data.get("characteristics") as string,
           specifications: data.get("specifications") as string,
-          applications: data.get("applications") as string,
-          datasheetUrl: data.get("datasheetUrl") as string,
-          additionalMetadata: data.get("additionalMetadata") as string,
         });
 
         const product = {

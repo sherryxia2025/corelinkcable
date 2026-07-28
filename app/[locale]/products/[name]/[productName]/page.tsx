@@ -1,9 +1,4 @@
-import {
-  ArrowDownToLine,
-  Check,
-  FileText,
-  MessageSquareText,
-} from "lucide-react";
+import { Check, FileText, MessageSquareText } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/blocks/footer";
@@ -89,11 +84,7 @@ export default async function ProductDetailPage({
         .filter(isUsableImageUrl),
     ),
   );
-  const specifications = {
-    ...detail.additionalMetadata,
-    ...detail.specifications,
-  };
-  const specificationEntries = Object.entries(specifications);
+  const specificationEntries = Object.entries(detail.specifications);
 
   return (
     <>
@@ -152,17 +143,6 @@ export default async function ProductDetailPage({
                     <MessageSquareText className="size-4" />
                     REQUEST A QUOTE
                   </Link>
-                  {detail.datasheetUrl ? (
-                    <a
-                      href={detail.datasheetUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm border border-[#11131b]/20 px-7 text-sm font-bold text-[#11131b] transition-colors hover:border-[#7765ff] hover:text-[#6654ef]"
-                    >
-                      <ArrowDownToLine className="size-4" />
-                      DOWNLOAD DATASHEET
-                    </a>
-                  ) : null}
                 </div>
               </div>
             </div>
