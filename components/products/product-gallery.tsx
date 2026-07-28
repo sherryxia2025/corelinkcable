@@ -29,7 +29,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 52vw"
-          className="object-contain p-5 sm:p-8"
+          className="object-cover"
         />
       </div>
 
