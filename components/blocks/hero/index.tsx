@@ -38,7 +38,7 @@ const defaultItems: HeroItem[] = [
     description:
       "Low-loss fiber families engineered around transmission, routing, density, and real installation conditions.",
     buttonText: "VIEW FIBER SOLUTIONS",
-    buttonHref: "/products",
+    buttonHref: "/products/optical-fiber",
   },
   {
     background: "/images/corelink-hero-fiber-assembly.jpg",

@@ -18,8 +18,8 @@ export function CoreLinkBrand({
       <Image
         src={inverted ? "/corelink-logo-inverted.svg" : "/corelink-logo.svg"}
         alt="CoreLinkCable — Connecting the Future"
-        width={920}
-        height={230}
+        width={595}
+        height={148}
         sizes={compact ? "145px" : "193px"}
         className="h-full w-full object-contain"
       />
