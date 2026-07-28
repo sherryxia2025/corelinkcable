@@ -136,13 +136,6 @@ export default async function EditProductPage({
         },
       },
       {
-        name: "detailContent",
-        title: "Product Overview",
-        type: "editor",
-        placeholder: "",
-        tip: "Use headings, paragraphs, lists, links, and images for the full product description.",
-      },
-      {
         name: "specifications",
         title: "Technical Specifications",
         type: "key-value",
@@ -225,7 +218,6 @@ export default async function EditProductPage({
           galleryUrls: data.get("galleryUrls") as string,
           characteristicsTitle: data.get("characteristicsTitle") as string,
           characteristics: data.get("characteristics") as string,
-          detailContent: data.get("detailContent") as string,
           specifications: data.get("specifications") as string,
           applications: data.get("applications") as string,
           datasheetUrl: data.get("datasheetUrl") as string,
