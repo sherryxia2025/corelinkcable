@@ -146,10 +146,10 @@ export default async function ProductDetailPage({
         {specificationEntries.length > 0 || specificationsImageUrl ? (
           <section
             id="specifications"
-            className="scroll-mt-24 bg-white py-16 md:py-20 lg:py-24"
+            className="scroll-mt-24 bg-white pb-16 md:pb-20 lg:pb-24"
           >
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <div className="w-full">
+              <div className="w-full border-t border-black/10 pt-16 md:pt-20 lg:pt-24">
                 <div className="flex items-center gap-3">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#7765ff]/10 text-[#7765ff]">
                     <FileText className="size-5" />
