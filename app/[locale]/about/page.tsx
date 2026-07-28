@@ -93,9 +93,6 @@ export default function AboutPage() {
               </div>
 
               <div>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                  Who we are
-                </p>
                 <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
                   Connecting the physical layer with purpose.
                 </h2>
@@ -149,9 +146,6 @@ export default function AboutPage() {
             <span className="mx-auto flex size-12 items-center justify-center rounded-full border border-white/40 bg-white/10">
               <Target className="size-6" />
             </span>
-            <p className="mt-6 font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/70">
-              Our mission
-            </p>
             <h2 className="mx-auto mt-4 max-w-3xl text-balance text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl md:text-5xl">
               Our Vision &amp; Mission
             </h2>
@@ -165,9 +159,6 @@ export default function AboutPage() {
         <section className="bg-[#f4e9ff] py-16 md:py-20 lg:py-24">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
-              <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                Our principles
-              </p>
               <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#2b2140] sm:text-4xl">
                 Industry Challenges &amp; Opportunities
               </h2>
@@ -203,9 +194,6 @@ export default function AboutPage() {
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
               <div>
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                  Built for the future
-                </p>
                 <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
                   Sustainable development connects all beings in the universe.
                 </h2>
@@ -283,9 +271,6 @@ export default function AboutPage() {
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-white/70">
-                  Work with CoreLink
-                </p>
                 <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl md:text-5xl">
                   Let&apos;s build the connection together.
                 </h2>
