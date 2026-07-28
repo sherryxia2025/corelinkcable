@@ -10,15 +10,9 @@ import { Footer } from "@/components/blocks/footer";
 import { Header } from "@/components/blocks/header";
 import { SubHero } from "@/components/blocks/sub-hero";
 import { ProductGallery } from "@/components/products/product-gallery";
-import { ProductRichText } from "@/components/products/product-rich-text";
 import { Link } from "@/i18n/navigation";
 import { parseProductDetailMetadata } from "@/lib/product-detail";
-import {
-  findProductByCategoryAndName,
-  getProducts,
-  ProductStatus,
-} from "@/models/product";
-import { ProductCard } from "../product-card";
+import { findProductByCategoryAndName } from "@/models/product";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -100,22 +94,6 @@ export default async function ProductDetailPage({
     ...detail.specifications,
   };
   const specificationEntries = Object.entries(specifications);
-  const relatedProducts = (
-    await getProducts({
-      categoryUuid: product.categoryUuid || undefined,
-      status: ProductStatus.Online,
-      page: 1,
-      limit: 5,
-    })
-  )
-    .filter((relatedProduct) => relatedProduct.uuid !== product.uuid)
-    .slice(0, 4);
-
-  const hasOverview = Boolean(
-    detail.detailContent.trim() || product.description?.trim(),
-  );
-  const hasTechnicalContent =
-    specificationEntries.length > 0 || detail.applications.length > 0;
 
   return (
     <>
@@ -141,10 +119,7 @@ export default async function ProductDetailPage({
               <ProductGallery images={images} alt={title} />
 
               <div className="lg:sticky lg:top-32">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                  {category.title}
-                </p>
-                <h1 className="mt-4 text-balance text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-4xl lg:text-5xl">
+                <h1 className="text-balance text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-4xl lg:text-5xl">
                   {title}
                 </h1>
 
@@ -225,62 +200,17 @@ export default async function ProductDetailPage({
           </div>
         </section>
 
-        {hasOverview || hasTechnicalContent ? (
+        {specificationEntries.length > 0 ? (
           <nav className="sticky top-0 z-20 border-y border-black/10 bg-white/95 backdrop-blur">
             <div className="container mx-auto flex gap-7 overflow-x-auto px-4 py-4 text-sm font-bold text-[#555963] md:px-6 lg:px-8">
-              {hasOverview ? (
-                <a
-                  href="#overview"
-                  className="whitespace-nowrap hover:text-[#6654ef]"
-                >
-                  Product Overview
-                </a>
-              ) : null}
-              {specificationEntries.length > 0 ? (
-                <a
-                  href="#specifications"
-                  className="whitespace-nowrap hover:text-[#6654ef]"
-                >
-                  Technical Specifications
-                </a>
-              ) : null}
-              {detail.applications.length > 0 ? (
-                <a
-                  href="#applications"
-                  className="whitespace-nowrap hover:text-[#6654ef]"
-                >
-                  Applications
-                </a>
-              ) : null}
+              <a
+                href="#specifications"
+                className="whitespace-nowrap hover:text-[#6654ef]"
+              >
+                Technical Specifications
+              </a>
             </div>
           </nav>
-        ) : null}
-
-        {hasOverview ? (
-          <section
-            id="overview"
-            className="scroll-mt-24 bg-[#f7f7f9] py-16 md:py-20 lg:py-24"
-          >
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <div className="mx-auto max-w-4xl">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                  Product overview
-                </p>
-                <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl">
-                  Built for dependable connection.
-                </h2>
-                <div className="mt-8 rounded-md bg-white p-7 shadow-sm md:p-10">
-                  {detail.detailContent ? (
-                    <ProductRichText content={detail.detailContent} />
-                  ) : (
-                    <p className="whitespace-pre-wrap leading-8 text-[#555963]">
-                      {product.description}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-          </section>
         ) : null}
 
         {specificationEntries.length > 0 ? (
@@ -325,35 +255,6 @@ export default async function ProductDetailPage({
           </section>
         ) : null}
 
-        {detail.applications.length > 0 ? (
-          <section
-            id="applications"
-            className="scroll-mt-24 bg-[#11131b] py-16 text-white md:py-20"
-          >
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <div className="mx-auto max-w-5xl">
-                <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#9d91ff]">
-                  Applications
-                </p>
-                <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] sm:text-4xl">
-                  Designed for real network environments.
-                </h2>
-                <div className="mt-10 grid gap-px overflow-hidden rounded-sm bg-white/15 sm:grid-cols-2">
-                  {detail.applications.map((application) => (
-                    <div
-                      key={application}
-                      className="flex items-start gap-3 bg-[#11131b] p-6"
-                    >
-                      <Check className="mt-0.5 size-5 shrink-0 text-[#9d91ff]" />
-                      <p className="leading-7 text-white/75">{application}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </section>
-        ) : null}
-
         <section className="bg-gradient-to-r from-[#694cff] to-[#2468ee] py-14 text-white md:py-20">
           <div className="container mx-auto px-4 md:px-6 lg:px-8">
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -375,39 +276,6 @@ export default async function ProductDetailPage({
             </div>
           </div>
         </section>
-
-        {relatedProducts.length > 0 ? (
-          <section className="bg-white py-16 md:py-20 lg:py-24">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-                <div>
-                  <p className="font-mono text-xs font-bold uppercase tracking-[0.24em] text-[#7765ff]">
-                    Related products
-                  </p>
-                  <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl">
-                    More from {category.title}
-                  </h2>
-                </div>
-                <Link
-                  href={`/products/${encodeURIComponent(category.name)}`}
-                  className="text-sm font-bold text-[#6654ef] hover:text-[#4937d7]"
-                >
-                  VIEW ALL PRODUCTS&nbsp;&nbsp;→
-                </Link>
-              </div>
-
-              <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                {relatedProducts.map((relatedProduct) => (
-                  <ProductCard
-                    key={relatedProduct.uuid}
-                    product={relatedProduct}
-                    href={`/products/${encodeURIComponent(category.name)}/${encodeURIComponent(relatedProduct.name)}`}
-                  />
-                ))}
-              </div>
-            </div>
-          </section>
-        ) : null}
       </main>
       <Footer />
     </>

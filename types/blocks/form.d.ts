@@ -20,6 +20,7 @@ export interface FormField {
     | "select"
     | "url"
     | "image-url"
+    | "image-list"
     | "editor"
     | "code_editor"
     | "richtext_editor"

@@ -47,6 +47,7 @@ import type {
   FormField as FormFieldType,
   FormSubmit,
 } from "@/types/blocks/form";
+import { ImageListField } from "./image-list-field";
 
 function buildFieldSchema(field: FormFieldType) {
   let schema = z.string();
@@ -630,6 +631,13 @@ export default function ({
                         value={String(field.value || "")}
                         onChange={field.onChange}
                         placeholder={item.placeholder}
+                        disabled={loading}
+                        {...item.attributes}
+                      />
+                    ) : item.type === "image-list" ? (
+                      <ImageListField
+                        value={String(field.value || "")}
+                        onChange={field.onChange}
                         disabled={loading}
                         {...item.attributes}
                       />

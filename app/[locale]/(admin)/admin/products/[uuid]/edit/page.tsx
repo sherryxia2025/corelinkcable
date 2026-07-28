@@ -104,19 +104,20 @@ export default async function EditProductPage({
       },
       {
         name: "coverUrl",
-        title: "Main Product Image",
+        title: "Cover Image",
         type: "image-url",
-        placeholder: "Enter cover image URL...",
+        placeholder: "Upload the required cover image...",
+        validation: {
+          required: true,
+          message: "Cover image is required",
+        },
+        tip: "Required. The cover image is the first image shown in the product gallery.",
       },
       {
         name: "galleryUrls",
-        title: "Gallery Image URLs",
-        type: "textarea",
-        placeholder: "One image URL per line",
-        attributes: {
-          rows: 5,
-        },
-        tip: "The main product image is included automatically.",
+        title: "Candidate Images",
+        type: "image-list",
+        tip: "Upload optional candidate images. The cover image and these images form the thumbnail gallery.",
       },
       {
         name: "model",
@@ -212,7 +213,9 @@ export default async function EditProductPage({
           !title ||
           !title.trim() ||
           !status ||
-          !status.trim()
+          !status.trim() ||
+          !coverUrl ||
+          !coverUrl.trim()
         ) {
           throw new Error("invalid form data");
         }
@@ -241,7 +244,7 @@ export default async function EditProductPage({
           status: status as ProductStatus,
           description: description || undefined,
           categoryUuid: categoryUuid || undefined,
-          coverUrl: coverUrl || undefined,
+          coverUrl: coverUrl.trim(),
           sort: Number.isNaN(sort) ? 0 : sort,
           metadata,
         };
