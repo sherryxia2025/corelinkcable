@@ -149,19 +149,19 @@ export default async function ProductDetailPage({
             className="scroll-mt-24 bg-white py-16 md:py-20 lg:py-24"
           >
             <div className="container mx-auto px-4 md:px-6 lg:px-8">
-              <div className="mx-auto max-w-5xl">
+              <div className="w-full">
                 <div className="flex items-center gap-3">
-                  <span className="flex size-11 items-center justify-center rounded-full bg-[#7765ff]/10 text-[#7765ff]">
+                  <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#7765ff]/10 text-[#7765ff]">
                     <FileText className="size-5" />
                   </span>
-                  <h2 className="text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl">
+                  <h2 className="min-w-0 text-2xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-3xl lg:text-4xl">
                     Technical Specifications
                   </h2>
                 </div>
 
                 {specificationEntries.length > 0 ? (
                   <div className="mt-9 overflow-hidden rounded-md border border-black/10">
-                    <table className="w-full border-collapse text-left">
+                    <table className="w-full table-fixed border-collapse text-left">
                       <tbody>
                         {specificationEntries.map(([label, value], index) => (
                           <tr
@@ -170,10 +170,10 @@ export default async function ProductDetailPage({
                               index % 2 === 0 ? "bg-[#f7f7f9]" : "bg-white"
                             }
                           >
-                            <th className="w-[42%] border-r border-black/10 px-5 py-4 text-sm font-bold text-[#30323a] md:px-7">
+                            <th className="w-[42%] break-words border-r border-black/10 px-4 py-4 text-sm font-bold text-[#30323a] sm:px-5 md:px-7">
                               {label}
                             </th>
-                            <td className="px-5 py-4 text-sm leading-6 text-[#5e616a] md:px-7">
+                            <td className="break-words px-4 py-4 text-sm leading-6 text-[#5e616a] sm:px-5 md:px-7">
                               {value}
                             </td>
                           </tr>
@@ -190,7 +190,7 @@ export default async function ProductDetailPage({
                       alt={`${title} technical specifications`}
                       width={1600}
                       height={1200}
-                      sizes="(max-width: 1024px) 100vw, 1024px"
+                      sizes="(max-width: 1280px) 100vw, 1280px"
                       className="h-auto w-full"
                     />
                   </div>
