@@ -1,4 +1,4 @@
-import { Check, FileText, MessageSquareText } from "lucide-react";
+import { Check, FileText } from "lucide-react";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/blocks/footer";
@@ -134,16 +134,6 @@ export default async function ProductDetailPage({
                     </ul>
                   </div>
                 ) : null}
-
-                <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                  <Link
-                    href={`/contact?product=${encodeURIComponent(title)}`}
-                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-sm bg-[#7765ff] px-7 text-sm font-bold text-white transition-colors hover:bg-[#6554eb]"
-                  >
-                    <MessageSquareText className="size-4" />
-                    REQUEST A QUOTE
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
