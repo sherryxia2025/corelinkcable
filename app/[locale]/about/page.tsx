@@ -186,11 +186,9 @@ export default function AboutPage() {
                 <h2 className="mt-4 text-balance text-3xl font-extrabold tracking-[-0.04em] text-[#11131b] sm:text-4xl md:text-5xl">
                   Sustainable development connects all beings in the universe.
                 </h2>
-                <p className="mt-6 max-w-xl text-base leading-7 text-[#666] md:text-lg">
-                  All humanity journeys to comprehend the nature of all things.
-                </p>
-                <div className="mt-7 space-y-4">
+                <div className="mt-6 space-y-4">
                   {[
+                    "All humanity journeys to comprehend the nature of all things.",
                     "The future unfolds infinitely, bound by no single path.",
                     "Light is the silent thread interlinking the cosmos.",
                     "Optical communications binds human wisdom to the endless universe.",
@@ -203,12 +201,6 @@ export default function AboutPage() {
                     </div>
                   ))}
                 </div>
-                <Link
-                  href="/products"
-                  className="mt-8 inline-flex min-h-11 items-center justify-center rounded-sm bg-[#7765ff] px-6 text-sm font-bold text-white transition-colors hover:bg-[#6554eb]"
-                >
-                  EXPLORE OUR PRODUCTS&nbsp;&nbsp;→
-                </Link>
               </div>
 
               <div className="relative min-h-[340px] overflow-hidden rounded-md sm:min-h-[470px]">
