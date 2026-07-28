@@ -4,6 +4,7 @@ export const PRODUCT_DETAIL_KEYS = [
   "model",
   "brand",
   "gallery",
+  "characteristicsTitle",
   "characteristics",
   "applications",
   "specifications",
@@ -17,6 +18,7 @@ export interface ProductDetailMetadata {
   model: string;
   brand: string;
   gallery: string[];
+  characteristicsTitle: string;
   characteristics: string[];
   applications: string[];
   specifications: Record<string, string>;
@@ -29,6 +31,7 @@ export interface ProductDetailFormInput {
   model?: string;
   brand?: string;
   galleryUrls?: string;
+  characteristicsTitle?: string;
   characteristics?: string;
   applications?: string;
   specifications?: string;
@@ -112,6 +115,7 @@ export function parseProductDetailMetadata(
     model: asString(source.model),
     brand: asString(source.brand),
     gallery: asStringArray(source.gallery),
+    characteristicsTitle: asString(source.characteristicsTitle),
     characteristics: asStringArray(source.characteristics),
     applications: asStringArray(source.applications),
     specifications: asStringRecord(source.specifications),
@@ -130,6 +134,7 @@ export function productDetailToFormData(
     model: detail.model,
     brand: detail.brand,
     galleryUrls: detail.gallery.join("\n"),
+    characteristicsTitle: detail.characteristicsTitle,
     characteristics: detail.characteristics.join("\n"),
     applications: detail.applications.join("\n"),
     specifications: JSON.stringify(detail.specifications),
@@ -158,6 +163,7 @@ export function buildProductDetailMetadata(
   const model = input.model?.trim();
   const brand = input.brand?.trim();
   const gallery = parseLines(input.galleryUrls);
+  const characteristicsTitle = input.characteristicsTitle?.trim();
   const characteristics = parseLines(input.characteristics);
   const applications = parseLines(input.applications);
   const detailContent = input.detailContent?.trim();
@@ -166,6 +172,9 @@ export function buildProductDetailMetadata(
   if (model) metadata.model = model;
   if (brand) metadata.brand = brand;
   if (gallery.length > 0) metadata.gallery = gallery;
+  if (characteristicsTitle) {
+    metadata.characteristicsTitle = characteristicsTitle;
+  }
   if (characteristics.length > 0) {
     metadata.characteristics = characteristics;
   }

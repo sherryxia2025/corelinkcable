@@ -126,7 +126,7 @@ export default async function ProductDetailPage({
                 {detail.characteristics.length > 0 ? (
                   <div className="mt-8">
                     <h2 className="text-lg font-extrabold text-[#11131b]">
-                      Key Characteristics
+                      {detail.characteristicsTitle || "Product Highlights"}
                     </h2>
                     <ul className="mt-4 space-y-3">
                       {detail.characteristics.map((characteristic) => (

@@ -120,10 +120,17 @@ export default async function EditProductPage({
         tip: "Upload optional candidate images. The cover image and these images form the thumbnail gallery.",
       },
       {
+        name: "characteristicsTitle",
+        title: "Highlights Section Title",
+        type: "text",
+        placeholder: "Product Highlights",
+        tip: "Customize the heading shown above the product highlight list.",
+      },
+      {
         name: "characteristics",
-        title: "Key Characteristics",
+        title: "Product Highlights",
         type: "textarea",
-        placeholder: "One characteristic per line",
+        placeholder: "One highlight per line",
         attributes: {
           rows: 8,
         },
@@ -216,6 +223,7 @@ export default async function EditProductPage({
         const sort = sortStr ? Number.parseInt(sortStr, 10) : 0;
         const metadata = buildProductDetailMetadata({
           galleryUrls: data.get("galleryUrls") as string,
+          characteristicsTitle: data.get("characteristicsTitle") as string,
           characteristics: data.get("characteristics") as string,
           detailContent: data.get("detailContent") as string,
           specifications: data.get("specifications") as string,
