@@ -201,19 +201,6 @@ export default async function ProductDetailPage({
         </section>
 
         {specificationEntries.length > 0 ? (
-          <nav className="sticky top-0 z-20 border-y border-black/10 bg-white/95 backdrop-blur">
-            <div className="container mx-auto flex gap-7 overflow-x-auto px-4 py-4 text-sm font-bold text-[#555963] md:px-6 lg:px-8">
-              <a
-                href="#specifications"
-                className="whitespace-nowrap hover:text-[#6654ef]"
-              >
-                Technical Specifications
-              </a>
-            </div>
-          </nav>
-        ) : null}
-
-        {specificationEntries.length > 0 ? (
           <section
             id="specifications"
             className="scroll-mt-24 bg-white py-16 md:py-20 lg:py-24"
