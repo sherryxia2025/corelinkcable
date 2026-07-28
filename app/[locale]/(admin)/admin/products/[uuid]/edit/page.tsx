@@ -96,11 +96,11 @@ export default async function EditProductPage({
         name: "description",
         title: "Short Description",
         type: "textarea",
-        placeholder:
-          "A concise product summary shown on category and detail pages.",
+        placeholder: "A concise product summary shown on product list cards.",
         attributes: {
           rows: 5,
         },
+        tip: "This description is displayed on the product list page.",
       },
       {
         name: "coverUrl",

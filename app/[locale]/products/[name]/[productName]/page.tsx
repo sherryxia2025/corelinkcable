@@ -123,12 +123,6 @@ export default async function ProductDetailPage({
                   {title}
                 </h1>
 
-                {product.description ? (
-                  <p className="mt-6 whitespace-pre-wrap text-base leading-8 text-[#5e616a] md:text-lg">
-                    {product.description}
-                  </p>
-                ) : null}
-
                 {detail.model || detail.brand ? (
                   <dl className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-black/10 bg-black/10">
                     {detail.model ? (
