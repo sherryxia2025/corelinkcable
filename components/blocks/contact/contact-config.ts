@@ -3,7 +3,7 @@ export const contactConfig = {
   contactMethods: {
     email: {
       title: "Send E-Mail",
-      value: "sherryxia05061@gmail.com",
+      value: "sales@corelinkcable.com",
     },
     phone: {
       title: "Call Anytime",

@@ -133,7 +133,7 @@ export default function PaymentCanceledPage() {
               {t("stillTrouble")}
             </p>
             <a
-              href="mailto:support@vibestarter.com"
+              href="mailto:sales@corelinkcable.com"
               className="text-blue-500 hover:text-blue-400 underline"
             >
               {t("contactSupport")}
