@@ -2,6 +2,7 @@ import type { Prisma } from "@/prisma/generated/prisma";
 
 export interface ProductDetailMetadata {
   gallery: string[];
+  detailDescription: string;
   characteristicsTitle: string;
   characteristics: string[];
   specifications: Record<string, string>;
@@ -10,6 +11,7 @@ export interface ProductDetailMetadata {
 
 export interface ProductDetailFormInput {
   galleryUrls?: string;
+  detailDescription?: string;
   characteristicsTitle?: string;
   characteristics?: string;
   specifications?: string;
@@ -82,6 +84,7 @@ export function parseProductDetailMetadata(
 
   return {
     gallery: asStringArray(source.gallery),
+    detailDescription: asString(source.detailDescription),
     characteristicsTitle: asString(source.characteristicsTitle),
     characteristics: asStringArray(source.characteristics),
     specifications: asStringRecord(source.specifications),
@@ -96,6 +99,7 @@ export function productDetailToFormData(
 
   return {
     galleryUrls: detail.gallery.join("\n"),
+    detailDescription: detail.detailDescription,
     characteristicsTitle: detail.characteristicsTitle,
     characteristics: detail.characteristics.join("\n"),
     specifications: JSON.stringify(detail.specifications),
@@ -110,11 +114,13 @@ export function buildProductDetailMetadata(
   const metadata: Record<string, Prisma.InputJsonValue> = {};
 
   const gallery = parseLines(input.galleryUrls);
+  const detailDescription = input.detailDescription?.trim();
   const characteristicsTitle = input.characteristicsTitle?.trim();
   const characteristics = parseLines(input.characteristics);
   const specificationsImageUrl = input.specificationsImageUrl?.trim();
 
   if (gallery.length > 0) metadata.gallery = gallery;
+  if (detailDescription) metadata.detailDescription = detailDescription;
   if (characteristicsTitle) {
     metadata.characteristicsTitle = characteristicsTitle;
   }

@@ -114,9 +114,15 @@ export default async function ProductDetailPage({
               <ProductGallery images={images} alt={title} />
 
               <div className="lg:sticky lg:top-32">
-                <h1 className="text-balance text-3xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-4xl lg:text-5xl">
+                <h1 className="text-balance text-2xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-3xl lg:text-4xl">
                   {title}
                 </h1>
+
+                {detail.detailDescription ? (
+                  <p className="mt-5 whitespace-pre-line text-base leading-7 text-[#5e616a]">
+                    {detail.detailDescription}
+                  </p>
+                ) : null}
 
                 {detail.characteristics.length > 0 ? (
                   <div className="mt-8">

@@ -103,6 +103,16 @@ export default async function EditProductPage({
         tip: "This description is displayed on the product list page.",
       },
       {
+        name: "detailDescription",
+        title: "Product Detail Description",
+        type: "textarea",
+        placeholder: "Describe this product for the product detail page.",
+        attributes: {
+          rows: 6,
+        },
+        tip: "This content is displayed below the product title on the detail page.",
+      },
+      {
         name: "coverUrl",
         title: "Cover Image",
         type: "image-url",
@@ -202,6 +212,7 @@ export default async function EditProductPage({
         const sort = sortStr ? Number.parseInt(sortStr, 10) : 0;
         const metadata = buildProductDetailMetadata({
           galleryUrls: data.get("galleryUrls") as string,
+          detailDescription: data.get("detailDescription") as string,
           characteristicsTitle: data.get("characteristicsTitle") as string,
           characteristics: data.get("characteristics") as string,
           specifications: data.get("specifications") as string,
