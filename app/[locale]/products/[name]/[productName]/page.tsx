@@ -114,7 +114,7 @@ export default async function ProductDetailPage({
               <ProductGallery images={images} alt={title} />
 
               <div className="lg:sticky lg:top-32">
-                <h1 className="text-balance text-2xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-3xl lg:text-4xl">
+                <h1 className="text-balance text-2xl font-extrabold leading-tight tracking-[-0.04em] text-[#11131b] sm:text-3xl">
                   {title}
                 </h1>
 
